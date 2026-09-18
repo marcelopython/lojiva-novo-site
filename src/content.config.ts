@@ -43,6 +43,21 @@ const guias = defineCollection({
   }),
 });
 
+const comparar = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/comparar' }),
+  schema: baseSchema.extend({
+    publishedAt: z.coerce.date().optional(),
+  }),
+});
+
+const perguntas = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/perguntas' }),
+  schema: baseSchema.extend({
+    shortAnswer: z.string(),
+    publishedAt: z.coerce.date().optional(),
+  }),
+});
+
 const glossario = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './src/content/glossario' }),
   schema: z.object({
@@ -56,4 +71,4 @@ const glossario = defineCollection({
   }),
 });
 
-export const collections = { recursos, segmentos, integracoes, guias, glossario };
+export const collections = { recursos, segmentos, integracoes, guias, glossario, comparar, perguntas };

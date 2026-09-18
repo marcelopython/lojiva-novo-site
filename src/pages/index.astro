@@ -168,7 +168,7 @@ const jsonLd = jsonLdGraph(organizationSchema(), websiteSchema(), softwareApplic
   </section>
 
   <!-- Testimonials -->
-  <section class="border-t border-border bg-muted/40 py-20">
+  <section id="depoimentos" class="border-t border-border bg-muted/40 py-20">
     <div class="container-page">
       <SectionHeading eyebrow="Depoimentos" title="O que os lojistas dizem" />
       <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -181,6 +181,9 @@ const jsonLd = jsonLdGraph(organizationSchema(), websiteSchema(), softwareApplic
   <section class="py-16">
     <div class="container-page mx-auto max-w-3xl">
       <FaqSection items={faq} title="Perguntas frequentes sobre a Lojiva" />
+      <div class="mt-8 text-center">
+        <Button href="/perguntas" variant="ghost">Ver mais dúvidas: é confiável? vale a pena? limitações? →</Button>
+      </div>
     </div>
   </section>
 

@@ -1,6 +1,8 @@
 const SITE_URL = 'https://www.lojiva.com.br';
 const ORG_NAME = 'Lojiva';
-const LEGAL_ENTITY = 'Evolvere Software';
+const LEGAL_ENTITY = 'Lojiva Software LTDA';
+const CNPJ = '42.220.633/0001-55';
+const FOUNDING_DATE = '2021-06-07';
 
 export function organizationSchema() {
   return {
@@ -9,7 +11,51 @@ export function organizationSchema() {
     name: ORG_NAME,
     legalName: LEGAL_ENTITY,
     url: SITE_URL,
-    logo: `${SITE_URL}/logo-lojiva.svg`,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE_URL}/logo-lojiva.svg`,
+    },
+    description:
+      'A Lojiva é um sistema de gestão (ERP) para lojas físicas e online, atacado e varejo multicanal, com especialização em moda e vestuário. Reúne PDV, estoque por grade de cor e tamanho, financeiro, emissão fiscal (NF-e/NFC-e), TEF e representantes.',
+    slogan: 'Sistema de gestão para lojas de roupas, atacado e varejo',
+    foundingDate: FOUNDING_DATE,
+    taxID: CNPJ,
+    vatID: CNPJ,
+    identifier: {
+      '@type': 'PropertyValue',
+      propertyID: 'CNPJ',
+      value: CNPJ,
+    },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Avenida Coronel Tubertino Rios, 425, Quadra 10',
+      addressLocality: 'Jaraguá',
+      addressRegion: 'GO',
+      postalCode: '76320-017',
+      addressCountry: 'BR',
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'Brasil',
+    },
+    knowsAbout: [
+      'ERP para varejo',
+      'Sistema para loja de roupas',
+      'PDV (frente de caixa)',
+      'Controle de estoque por grade de cor e tamanho',
+      'Emissão de NF-e e NFC-e',
+      'TEF e maquininha integrada',
+      'Gestão financeira para varejo',
+      'Representantes comerciais e comissões',
+      'Atacado e varejo multicanal',
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      telephone: '+5562994530152',
+      availableLanguage: ['Portuguese'],
+      url: `${SITE_URL}/precos`,
+    },
     sameAs: [
       'https://www.instagram.com/evolveresoftware/',
       'https://www.linkedin.com/company/evolveresoftware/',
@@ -32,13 +78,42 @@ export function websiteSchema() {
 export function softwareApplicationSchema() {
   return {
     '@type': 'SoftwareApplication',
+    '@id': `${SITE_URL}/#software`,
     name: ORG_NAME,
+    description:
+      'Sistema de gestão (ERP) para lojas físicas e online, atacado e varejo multicanal, com PDV, controle de estoque por grade de cor e tamanho, financeiro, emissão fiscal (NF-e/NFC-e), TEF e vendas por representantes.',
     applicationCategory: 'BusinessApplication',
+    applicationSubCategory: 'Retail Management Software',
     operatingSystem: 'Web',
+    url: SITE_URL,
+    image: `${SITE_URL}/og-default.png`,
+    inLanguage: 'pt-BR',
+    softwareHelp: `${SITE_URL}/guias`,
+    featureList: [
+      'PDV (frente de caixa)',
+      'Controle de estoque por grade de cor e tamanho',
+      'Multi-loja e multi-estoque',
+      'Financeiro: contas a pagar e a receber, fluxo de caixa e DRE',
+      'Emissão fiscal NF-e e NFC-e',
+      'TEF e maquininha integrada',
+      'Link de pagamento (Pix, boleto e cartão)',
+      'Representantes, vendedores e comissões',
+      'Trocas e devoluções',
+      'Compras e importação de XML',
+      'Catálogo online',
+    ],
     offers: {
       '@type': 'Offer',
       price: '97.00',
       priceCurrency: 'BRL',
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: '97.00',
+        priceCurrency: 'BRL',
+        unitText: 'MÊS',
+      },
+      availability: 'https://schema.org/InStock',
+      url: `${SITE_URL}/precos`,
     },
     publisher: { '@id': `${SITE_URL}/#organization` },
   };

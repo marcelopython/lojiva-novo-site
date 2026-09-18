@@ -49,11 +49,13 @@ export const INTEGRACOES_MENU: NavGroup = {
   label: 'Integrações',
   href: '/integracoes',
   links: [
+    { label: 'Smart TEF (maquininha)', href: '/integracoes/smart-tef' },
     { label: 'Shopee', href: '/integracoes/shopee' },
     { label: 'Nuvemshop', href: '/integracoes/nuvemshop' },
+    { label: 'Mercado Pago', href: '/integracoes/mercado-pago' },
     { label: 'Correios', href: '/integracoes/correios' },
     { label: 'Melhor Envio', href: '/integracoes/melhor-envio' },
-    { label: 'Mercado Pago', href: '/integracoes/mercado-pago' },
+    { label: 'SuperFrete', href: '/integracoes/superfrete' },
     { label: 'Ver todas as integrações', href: '/integracoes' },
   ],
 };
@@ -63,6 +65,8 @@ export const CONTEUDO_MENU: NavGroup = {
   href: '/guias',
   links: [
     { label: 'Guias', href: '/guias', description: 'Conteúdo prático para lojistas' },
+    { label: 'Comparações', href: '/comparar', description: 'Sistema vs planilha, especializado vs genérico' },
+    { label: 'Perguntas frequentes', href: '/perguntas', description: 'É confiável? Vale a pena? Limitações?' },
     { label: 'Glossário', href: '/glossario', description: 'Termos de gestão, fiscal e varejo' },
   ],
 };
@@ -97,12 +101,15 @@ export const FOOTER_COLUMNS = [
     title: 'Conteúdo',
     links: [
       { label: 'Guias', href: '/guias' },
+      { label: 'Comparações', href: '/comparar' },
+      { label: 'Perguntas frequentes', href: '/perguntas' },
       { label: 'Glossário', href: '/glossario' },
     ],
   },
   {
     title: 'Empresa',
     links: [
+      { label: 'Sobre a Lojiva', href: '/sobre' },
       { label: 'Preços', href: '/precos' },
       { label: 'Falar com especialista', href: '#whatsapp' },
     ],

@@ -1,0 +1,110 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Button from '@/components/ui/Button.astro';
+import { organizationSchema, breadcrumbSchema, jsonLdGraph } from '@/lib/schema';
+import { whatsappUrl as waUrl } from '@/data/plans';
+
+const breadcrumbs = [
+  { name: 'Início', url: '/' },
+  { name: 'Sobre', url: '/sobre' },
+];
+
+const jsonLd = jsonLdGraph(
+  {
+    '@type': 'AboutPage',
+    name: 'Sobre a Lojiva',
+    description: 'Quem desenvolve a Lojiva, para quem o sistema é feito e como a empresa se posiciona.',
+    url: 'https://www.lojiva.com.br/sobre',
+    mainEntity: { '@id': 'https://www.lojiva.com.br/#organization' },
+    inLanguage: 'pt-BR',
+  },
+  organizationSchema(),
+  breadcrumbSchema(breadcrumbs),
+);
+
+const fatos = [
+  { label: 'Razão social', valor: 'Lojiva Software LTDA' },
+  { label: 'CNPJ', valor: '42.220.633/0001-55' },
+  { label: 'Fundação', valor: 'Junho de 2021' },
+  { label: 'Sede', valor: 'Jaraguá — GO' },
+];
+---
+
+<BaseLayout
+  title="Sobre a Lojiva | Quem somos e para quem o sistema é feito"
+  description="A Lojiva é um sistema de gestão para lojas de moda, atacado e varejo, desenvolvido pela Lojiva Software LTDA. Conheça a empresa, o posicionamento e para quem o sistema é indicado."
+  jsonLd={jsonLd}
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="container-page pb-8 pt-4">
+    <SectionHeading
+      eyebrow="Sobre"
+      title="Um sistema de gestão feito para quem vende moda e varejo"
+      description="A Lojiva reúne, em uma única plataforma, o que uma loja precisa para vender, controlar estoque e cuidar do financeiro — com forte especialização em operações de moda."
+    />
+  </section>
+
+  <section class="container-page pb-4">
+    <div class="prose-content mx-auto">
+      <h2>O que é a Lojiva</h2>
+      <p>
+        A Lojiva é um sistema de gestão (ERP) para lojas físicas e online, atacado e varejo multicanal. Ela conecta
+        <a href="/recursos/pdv">PDV</a>, <a href="/recursos/grade-cor-e-tamanho">estoque por grade de cor e tamanho</a>,
+        <a href="/recursos/financeiro">financeiro</a>, <a href="/recursos/fiscal-nfe-nfce">emissão fiscal (NF-e/NFC-e)</a>,
+        <a href="/recursos/tef-e-maquininha">maquininha integrada</a> e
+        <a href="/recursos/representantes-e-comissoes">vendas por representantes</a> no mesmo lugar — para que a loja pare de
+        depender de planilhas paralelas e de retrabalho entre sistemas que não conversam.
+      </p>
+
+      <h2>Para quem a Lojiva é feita</h2>
+      <p>
+        O diferencial da Lojiva aparece em operações com variação de cor e tamanho: <a href="/segmentos/loja-de-roupas-e-moda">lojas de roupas e moda</a>,
+        <a href="/segmentos/atacado-e-representantes">atacado com representação comercial</a> e
+        <a href="/segmentos/varejo-multicanal">varejo que vende em vários canais</a> a partir do mesmo estoque. A Lojiva também
+        atende varejo em geral — mas é honesta sobre isso: quando o produto não tem variação, boa parte da especialização em moda
+        não é aproveitada. Entenda melhor em <a href="/comparar/erp-especializado-em-moda-vs-erp-generico">especializado vs genérico</a>.
+      </p>
+
+      <h2>Como nos posicionamos</h2>
+      <p>
+        Preferimos conteúdo útil e verificável a promessas vazias. Por isso publicamos abertamente as
+        <a href="/perguntas/quais-as-limitacoes-da-lojiva">limitações do sistema</a>, explicamos
+        <a href="/perguntas/lojiva-vale-a-pena">quando a Lojiva vale a pena e quando ainda não</a> e mantemos os
+        <a href="/precos">preços</a> transparentes, sem fidelidade. O que anunciamos como recurso é o que o sistema realmente faz.
+      </p>
+
+      <h2>A empresa</h2>
+      <p>
+        A Lojiva é desenvolvida e mantida pela <strong>Lojiva Software LTDA</strong>, empresa brasileira sediada em Jaraguá,
+        Goiás. "Evolvere Software" é o nome anterior associado à marca; hoje a razão social é Lojiva Software LTDA.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-page pb-16">
+    <div class="mx-auto grid max-w-3xl gap-4 sm:grid-cols-2">
+      {fatos.map((f) => (
+        <div class="rounded-xl border border-border bg-card p-5">
+          <p class="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{f.label}</p>
+          <p class="mt-1 font-display font-bold text-foreground">{f.valor}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="border-t border-border bg-surface-dark py-16">
+    <div class="container-page text-center">
+      <h2 class="font-display text-2xl font-bold text-white sm:text-3xl">Quer conhecer a Lojiva por dentro?</h2>
+      <p class="mx-auto mt-3 max-w-xl text-white/60">Teste com os seus próprios produtos ou fale com a equipe antes de decidir.</p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <Button href="/cadastro" size="lg">Testar a Lojiva</Button>
+        <Button href={waUrl('Olá! Gostaria de saber mais sobre a Lojiva.')} variant="outline" size="lg" external class="!border-white/20 !bg-transparent !text-white hover:!bg-white/10">
+          Falar com especialista
+        </Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

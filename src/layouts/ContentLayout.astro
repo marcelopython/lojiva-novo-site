@@ -57,7 +57,14 @@ const jsonLd = jsonLdGraph(...nodes);
 const dateFormatter = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'UTC' });
 ---
 
-<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+<BaseLayout
+  title={title}
+  description={description}
+  jsonLd={jsonLd}
+  ogType={isArticle ? 'article' : 'website'}
+  publishedTime={publishedAt?.toISOString()}
+  modifiedTime={updatedAt?.toISOString()}
+>
   <Breadcrumbs items={breadcrumbs} />
 
   <article class="container-page pb-16 pt-2">

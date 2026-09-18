@@ -1,6 +1,40 @@
+# Lojiva — https://www.lojiva.com.br
+# Conteúdo público liberado para busca tradicional e crawlers de IA.
+
 User-agent: *
 Allow: /
 Disallow: /cadastro
 Disallow: /api/
+
+# Crawlers de IA (indexação e respostas geradas por LLMs)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Descrição da empresa e do produto para LLMs
+# https://www.lojiva.com.br/llms.txt
 
 Sitemap: https://www.lojiva.com.br/sitemap-index.xml

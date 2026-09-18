@@ -11,15 +11,27 @@ type Props = {
   image?: string;
   jsonLd?: string;
   noindex?: boolean;
+  ogType?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
 };
 
-const { title, description, image, jsonLd, noindex } = Astro.props;
+const { title, description, image, jsonLd, noindex, ogType, publishedTime, modifiedTime } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="pt-BR">
   <head>
-    <BaseHead title={title} description={description} image={image} jsonLd={jsonLd} noindex={noindex} />
+    <BaseHead
+      title={title}
+      description={description}
+      image={image}
+      jsonLd={jsonLd}
+      noindex={noindex}
+      ogType={ogType}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+    />
     <Analytics />
   </head>
   <body class="font-sans antialiased">

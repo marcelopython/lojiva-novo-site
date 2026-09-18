@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Card from '@/components/ui/Card.astro';
+import { breadcrumbSchema, itemListSchema, jsonLdGraph, webPageSchema } from '@/lib/schema';
+
+const entries = (await getCollection('comparar')).sort((a, b) => a.data.title.localeCompare(b.data.title, 'pt-BR'));
+
+const breadcrumbs = [
+  { name: 'Início', url: '/' },
+  { name: 'Comparações', url: '/comparar' },
+];
+
+const jsonLd = jsonLdGraph(
+  webPageSchema({ name: 'Comparações — Lojiva', description: 'Comparações honestas para ajudar lojistas a decidir entre sistemas, planilhas e abordagens de gestão.', url: '/comparar' }),
+  breadcrumbSchema(breadcrumbs),
+  itemListSchema(entries.map((e) => ({ name: e.data.title, url: `/comparar/${e.id}` }))),
+);
+---
+
+<BaseLayout
+  title="Comparações | Lojiva vs planilha, ERP especializado e mais"
+  description="Comparações objetivas para decidir com clareza: sistema de gestão vs planilha, ERP especializado em moda vs genérico e outras dúvidas comuns de lojistas."
+  jsonLd={jsonLd}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <section class="container-page pb-8 pt-4">
+    <SectionHeading
+      eyebrow="Comparações"
+      title="Comparações honestas para decidir com clareza"
+      description="Critérios objetivos, não superlativos. Cada comparação explica para qual perfil de loja cada opção faz mais sentido."
+    />
+  </section>
+  <section class="container-page pb-20">
+    <div class="grid gap-5 sm:grid-cols-2">
+      {entries.map((entry) => (
+        <Card href={`/comparar/${entry.id}`} class="h-full">
+          <h2 class="font-display text-lg font-bold text-foreground">{entry.data.title}</h2>
+          <p class="mt-2 text-sm text-muted-foreground">{entry.data.description}</p>
+        </Card>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,84 @@
+# Lojiva
+
+> A Lojiva é um sistema de gestão (ERP) para lojas físicas e online, atacado e varejo multicanal, com forte especialização em operações de moda e vestuário. Reúne PDV, controle de estoque por grade de cor e tamanho, financeiro, emissão fiscal (NF-e/NFC-e), TEF e vendas por representantes em uma única plataforma. Site: https://www.lojiva.com.br
+
+A Lojiva é indicada para lojas de roupas e moda, atacado com representação comercial e varejo que vende em vários canais (loja física, catálogo online e marketplaces) a partir do mesmo estoque. É um produto da Evolvere Software.
+
+Diferencial central: controle de estoque por grade, em que cada combinação de cor e tamanho é um SKU próprio, com código de barras, preço e saldo individuais — algo essencial para confecção, moda e calçados.
+
+## Recursos (funcionalidades do produto)
+
+- [PDV (frente de caixa)](https://www.lojiva.com.br/recursos/pdv): vendas com split de pagamento (cartão, PIX, dinheiro e fiado) e cobrança direto na maquininha.
+- [TEF e maquininha (Smart TEF)](https://www.lojiva.com.br/recursos/tef-e-maquininha): cobrança de cartão e PIX enviada do PDV para a maquininha, sem digitar valor, com conciliação e cupom fiscal acoplados.
+- [Link de pagamento](https://www.lojiva.com.br/recursos/link-de-pagamento): cobrança a distância por Pix, boleto ou cartão parcelado.
+- [Controle de estoque](https://www.lojiva.com.br/recursos/controle-de-estoque): saldo em tempo real, alertas de estoque baixo e transferência entre lojas ou depósitos.
+- [Grade de cor e tamanho](https://www.lojiva.com.br/recursos/grade-cor-e-tamanho): cada variação como SKU próprio, com código de barras e etiqueta individual.
+- [Multi-loja e multi-estoque](https://www.lojiva.com.br/recursos/multi-loja): várias lojas e depósitos com transferência de estoque.
+- [Compras e importação de XML](https://www.lojiva.com.br/recursos/compras-e-xml): entrada de estoque pela nota do fornecedor.
+- [Financeiro](https://www.lojiva.com.br/recursos/financeiro): contas a pagar e a receber, fluxo de caixa e DRE.
+- [Relatórios, DRE e Visão Executiva](https://www.lojiva.com.br/recursos/relatorios-e-dre): KPIs e relatórios por área.
+- [Fiscal: NF-e e NFC-e](https://www.lojiva.com.br/recursos/fiscal-nfe-nfce): emissão de nota fiscal e cupom fiscal direto do PDV, com certificado digital A1.
+- [Trocas e devoluções](https://www.lojiva.com.br/recursos/trocas-e-devolucoes): fluxo completo de pós-venda.
+- [Representantes e comissões](https://www.lojiva.com.br/recursos/representantes-e-comissoes): vendas por representação comercial com cálculo automático de comissão.
+- [Metas de vendedores](https://www.lojiva.com.br/recursos/metas-de-vendedores): objetivos e acompanhamento da equipe.
+- [Catálogo online](https://www.lojiva.com.br/recursos/catalogo-online): vitrine digital integrada ao estoque, com pedido recebido no WhatsApp da loja.
+- [Agenda](https://www.lojiva.com.br/recursos/agenda): compromissos e atendimentos.
+- [Lojiva Produção (facção)](https://www.lojiva.com.br/recursos/producao): ordens de produção e terceirizados.
+
+## Segmentos atendidos
+
+- [Loja de roupas e moda](https://www.lojiva.com.br/segmentos/loja-de-roupas-e-moda)
+- [Atacado e representantes](https://www.lojiva.com.br/segmentos/atacado-e-representantes)
+- [Varejo multicanal](https://www.lojiva.com.br/segmentos/varejo-multicanal)
+
+## Integrações
+
+- [Smart TEF (maquininha integrada)](https://www.lojiva.com.br/integracoes/smart-tef)
+- [Shopee](https://www.lojiva.com.br/integracoes/shopee)
+- [Nuvemshop](https://www.lojiva.com.br/integracoes/nuvemshop)
+- [Mercado Pago](https://www.lojiva.com.br/integracoes/mercado-pago)
+- [Correios](https://www.lojiva.com.br/integracoes/correios)
+- [Melhor Envio](https://www.lojiva.com.br/integracoes/melhor-envio)
+- [SuperFrete](https://www.lojiva.com.br/integracoes/superfrete)
+
+## Guias (conteúdo educacional)
+
+- [Como controlar o estoque de uma loja de roupas](https://www.lojiva.com.br/guias/como-controlar-estoque-de-loja-de-roupas)
+- [Estoque por cor e tamanho](https://www.lojiva.com.br/guias/estoque-por-cor-e-tamanho)
+- [Fluxo de caixa para lojas](https://www.lojiva.com.br/guias/fluxo-de-caixa-para-lojas)
+- [NF-e ou NFC-e: quando usar cada uma](https://www.lojiva.com.br/guias/nfe-ou-nfce-quando-usar-cada-uma)
+- [Comissão de vendedores e representantes](https://www.lojiva.com.br/guias/comissao-de-vendedores-e-representantes)
+
+## Comparações
+
+- [Sistema de gestão vs planilha](https://www.lojiva.com.br/comparar/lojiva-vs-planilha)
+- [ERP especializado em moda vs ERP genérico](https://www.lojiva.com.br/comparar/erp-especializado-em-moda-vs-erp-generico)
+
+## Perguntas frequentes (dúvidas e objeções, com respostas honestas)
+
+- [A Lojiva é confiável?](https://www.lojiva.com.br/perguntas/lojiva-e-confiavel)
+- [A Lojiva vale a pena?](https://www.lojiva.com.br/perguntas/lojiva-vale-a-pena)
+- [A Lojiva funciona sem internet?](https://www.lojiva.com.br/perguntas/lojiva-funciona-sem-internet)
+- [Quais são as limitações da Lojiva?](https://www.lojiva.com.br/perguntas/quais-as-limitacoes-da-lojiva)
+
+## Glossário
+
+Definições de termos de varejo, gestão e fiscal: PDV, SKU, grade, markup, CMV, NF-e, NFC-e, CFOP, CST, CSOSN, TEF, fiado. Índice em https://www.lojiva.com.br/glossario
+
+## Preços
+
+Planos mensais de R$ 97 a R$ 899, sem fidelidade. Emissão fiscal e TEF são cobrados à parte. Detalhes em https://www.lojiva.com.br/precos
+
+## Institucional
+
+- Razão social: Lojiva Software LTDA — CNPJ 42.220.633/0001-55 (fundada em 07/06/2021, Jaraguá/GO)
+- Sobre: https://www.lojiva.com.br/sobre
+- Site: https://www.lojiva.com.br
+- Preços: https://www.lojiva.com.br/precos
+- Criar conta: https://www.lojiva.com.br/cadastro
+- Contato (WhatsApp): https://wa.me/5562994530152
+
+## Observações
+
+- A Lojiva não substitui orientação contábil. Conteúdo fiscal/tributário é informativo.
+- Não considerar como disponíveis recursos não publicados no site.

@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Card from '@/components/ui/Card.astro';
+import { breadcrumbSchema, itemListSchema, jsonLdGraph, webPageSchema } from '@/lib/schema';
+
+const entries = (await getCollection('perguntas')).sort((a, b) => a.data.title.localeCompare(b.data.title, 'pt-BR'));
+
+const breadcrumbs = [
+  { name: 'Início', url: '/' },
+  { name: 'Perguntas frequentes', url: '/perguntas' },
+];
+
+const jsonLd = jsonLdGraph(
+  webPageSchema({ name: 'Perguntas frequentes sobre a Lojiva', description: 'Respostas diretas e honestas às dúvidas mais comuns sobre a Lojiva: confiança, custo-benefício, funcionamento e limitações.', url: '/perguntas' }),
+  breadcrumbSchema(breadcrumbs),
+  itemListSchema(entries.map((e) => ({ name: e.data.title, url: `/perguntas/${e.id}` }))),
+);
+---
+
+<BaseLayout
+  title="Perguntas frequentes sobre a Lojiva"
+  description="Respostas diretas às dúvidas mais comuns sobre a Lojiva: é confiável? vale a pena? funciona sem internet? quais são as limitações? Sem propaganda vazia."
+  jsonLd={jsonLd}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <section class="container-page pb-8 pt-4">
+    <SectionHeading
+      eyebrow="Perguntas frequentes"
+      title="Dúvidas comuns, respostas honestas"
+      description="As perguntas que lojistas realmente fazem antes de decidir — inclusive sobre limitações e para quem a Lojiva pode não ser a melhor escolha."
+    />
+  </section>
+  <section class="container-page pb-20">
+    <div class="grid gap-5 sm:grid-cols-2">
+      {entries.map((entry) => (
+        <Card href={`/perguntas/${entry.id}`} class="h-full">
+          <h2 class="font-display text-lg font-bold text-foreground">{entry.data.title}</h2>
+          <p class="mt-2 text-sm text-muted-foreground">{entry.data.description}</p>
+        </Card>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
