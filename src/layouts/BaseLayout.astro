@@ -1,0 +1,35 @@
+---
+import BaseHead from '@/components/seo/BaseHead.astro';
+import Analytics from '@/components/analytics/Analytics.astro';
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
+import '@/styles/global.css';
+
+type Props = {
+  title: string;
+  description: string;
+  image?: string;
+  jsonLd?: string;
+  noindex?: boolean;
+};
+
+const { title, description, image, jsonLd, noindex } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <BaseHead title={title} description={description} image={image} jsonLd={jsonLd} noindex={noindex} />
+    <Analytics />
+  </head>
+  <body class="font-sans antialiased">
+    <a href="#conteudo-principal" class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:m-3 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-white">
+      Ir para o conteúdo principal
+    </a>
+    <Header />
+    <main id="conteudo-principal">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

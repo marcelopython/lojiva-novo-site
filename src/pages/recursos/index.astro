@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Card from '@/components/ui/Card.astro';
+import { breadcrumbSchema, itemListSchema, jsonLdGraph, webPageSchema } from '@/lib/schema';
+
+const entries = (await getCollection('recursos')).sort((a, b) => a.data.title.localeCompare(b.data.title, 'pt-BR'));
+
+const breadcrumbs = [
+  { name: 'Início', url: '/' },
+  { name: 'Recursos', url: '/recursos' },
+];
+
+const jsonLd = jsonLdGraph(
+  webPageSchema({ name: 'Recursos da Lojiva', description: 'Todas as funcionalidades do sistema de gestão Lojiva.', url: '/recursos' }),
+  breadcrumbSchema(breadcrumbs),
+  itemListSchema(entries.map((e) => ({ name: e.data.title, url: `/recursos/${e.id}` }))),
+);
+---
+
+<BaseLayout
+  title="Recursos da Lojiva | PDV, estoque, financeiro, fiscal e mais"
+  description="Conheça todas as funcionalidades da Lojiva: PDV, controle de estoque, grade de cor e tamanho, financeiro, fiscal, trocas, representantes e catálogo online."
+  jsonLd={jsonLd}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <section class="container-page pb-8 pt-4">
+    <SectionHeading eyebrow="Recursos" title="Tudo que a Lojiva oferece para gerir sua loja" description="Cada funcionalidade explicada em detalhe: como funciona, para quem é indicada e como se conecta ao resto do sistema." />
+  </section>
+  <section class="container-page pb-20">
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {entries.map((entry) => (
+        <Card href={`/recursos/${entry.id}`} class="h-full">
+          <h2 class="font-display text-lg font-bold text-foreground">{entry.data.title}</h2>
+          <p class="mt-2 text-sm text-muted-foreground">{entry.data.description}</p>
+        </Card>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

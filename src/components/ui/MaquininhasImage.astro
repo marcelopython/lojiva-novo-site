@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import maquininhas from '@/assets/maquininhas-homologadas.webp';
+
+const alt =
+  'Maquininhas e modelos homologados para o Smart TEF da Lojiva: Rede, Cielo, Getnet, Stone, PagBank, Sicredi, Sipag, Mercado Pago, PicPay, Vero, Safrapay, Claropay, Caixa, Bin, Punto, Justa, Elgin Pay, Adiq, RedeFlex e XP Empresas Pay.';
+---
+
+<figure class="not-prose my-6">
+  <button
+    type="button"
+    data-maq-open
+    class="block w-full cursor-zoom-in overflow-hidden rounded-2xl border border-border bg-white p-3 shadow-soft transition-transform hover:-translate-y-0.5 sm:p-5"
+    aria-label="Ampliar imagem das maquininhas homologadas"
+  >
+    <Image
+      src={maquininhas}
+      alt={alt}
+      class="mx-auto w-full max-w-4xl"
+      loading="lazy"
+      widths={[640, 960, 1280, 1600]}
+      sizes="(min-width: 768px) 56rem, 100vw"
+    />
+  </button>
+  <figcaption class="mt-3 text-center text-xs text-muted-foreground">
+    Modelos de maquininha homologados para o Smart TEF, por adquirente. Clique para ampliar e ler os nomes dos modelos.
+  </figcaption>
+</figure>
+
+<dialog data-maq-dialog class="m-auto max-h-[96vh] max-w-[96vw] rounded-2xl bg-white p-0 backdrop:bg-black/70">
+  <div class="sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-border bg-white px-4 py-3">
+    <p class="text-sm font-medium text-foreground">Role ou dê zoom para ler os modelos das maquininhas</p>
+    <button
+      type="button"
+      data-maq-close
+      class="rounded-full p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
+      aria-label="Fechar"
+    >
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+  <div class="overflow-auto p-2">
+    <Image src={maquininhas} alt={alt} class="max-w-none" widths={[1280, 1920, 2642]} sizes="2642px" />
+  </div>
+</dialog>
+
+<script is:inline>
+  (function () {
+    document.querySelectorAll('[data-maq-open]').forEach(function (btn) {
+      var fig = btn.closest('figure');
+      var dlg = fig ? fig.nextElementSibling : null;
+      if (!dlg || dlg.tagName !== 'DIALOG') return;
+      btn.addEventListener('click', function () {
+        dlg.showModal();
+      });
+      dlg.querySelectorAll('[data-maq-close]').forEach(function (c) {
+        c.addEventListener('click', function () {
+          dlg.close();
+        });
+      });
+      dlg.addEventListener('click', function (e) {
+        if (e.target === dlg) dlg.close();
+      });
+    });
+  })();
+</script>

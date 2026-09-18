@@ -1,0 +1,24 @@
+---
+type Props = {
+  items: { question: string; answer: string }[];
+  title?: string;
+};
+const { items, title = 'Perguntas frequentes' } = Astro.props;
+---
+
+{items.length > 0 && (
+  <section class="py-12">
+    <h2 class="mb-6 text-2xl font-bold text-foreground">{title}</h2>
+    <div class="divide-y divide-border rounded-2xl border border-border bg-card">
+      {items.map((item) => (
+        <details class="group px-5 py-4 [&_summary]:cursor-pointer">
+          <summary class="flex list-none items-center justify-between gap-4 font-medium text-foreground marker:content-none">
+            {item.question}
+            <span class="shrink-0 text-primary transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+)}

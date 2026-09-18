@@ -1,0 +1,21 @@
+---
+type Props = {
+  content: string;
+  author: string;
+  role: string;
+  avatar: string;
+  class?: string;
+};
+const { content, author, role, avatar, class: className = '' } = Astro.props;
+---
+
+<figure class={`flex h-full flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-soft ${className}`}>
+  <blockquote class="text-sm leading-relaxed text-foreground/85">"{content}"</blockquote>
+  <figcaption class="mt-5 flex items-center gap-3">
+    <img src={avatar} alt={author} width="40" height="40" loading="lazy" class="h-10 w-10 rounded-full object-cover" />
+    <div>
+      <p class="text-sm font-semibold text-foreground">{author}</p>
+      <p class="text-xs text-muted-foreground">{role}</p>
+    </div>
+  </figcaption>
+</figure>

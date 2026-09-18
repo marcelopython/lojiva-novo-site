@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Card from '@/components/ui/Card.astro';
+import { breadcrumbSchema, itemListSchema, jsonLdGraph, webPageSchema } from '@/lib/schema';
+
+const entries = (await getCollection('guias')).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+
+const breadcrumbs = [
+  { name: 'Início', url: '/' },
+  { name: 'Guias', url: '/guias' },
+];
+
+const jsonLd = jsonLdGraph(
+  webPageSchema({ name: 'Guias para lojistas', description: 'Guias práticos sobre estoque, vendas, fiscal e financeiro para lojas.', url: '/guias' }),
+  breadcrumbSchema(breadcrumbs),
+  itemListSchema(entries.map((e) => ({ name: e.data.title, url: `/guias/${e.id}` }))),
+);
+---
+
+<BaseLayout
+  title="Guias para lojistas | Estoque, vendas, fiscal e financeiro"
+  description="Guias práticos e objetivos para quem gerencia uma loja: controle de estoque, PDV, comissão de vendedores, fiscal e fluxo de caixa."
+  jsonLd={jsonLd}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <section class="container-page pb-8 pt-4">
+    <SectionHeading eyebrow="Guias" title="Conteúdo prático para quem gerencia uma loja" description="Sem enrolação: respostas diretas para as dúvidas mais comuns de gestão de loja." />
+  </section>
+  <section class="container-page pb-20">
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {entries.map((entry) => (
+        <Card href={`/guias/${entry.id}`} class="h-full">
+          <h2 class="font-display text-lg font-bold text-foreground">{entry.data.title}</h2>
+          <p class="mt-2 text-sm text-muted-foreground">{entry.data.description}</p>
+        </Card>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

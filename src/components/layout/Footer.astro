@@ -1,0 +1,58 @@
+---
+import { FOOTER_COLUMNS, SOCIAL_LINKS } from '@/data/nav';
+import { whatsappUrl } from '@/data/plans';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-border bg-surface-dark text-white/70">
+  <div class="container-page py-14">
+    <div class="grid gap-10 lg:grid-cols-[1.3fr_repeat(5,1fr)]">
+      <div>
+        <img src="/logo-lojiva.svg" alt="Lojiva" width="110" height="28" class="brightness-0 invert" />
+        <p class="mt-4 max-w-xs text-sm text-white/50">
+          Sistema de gestão para lojas: PDV, estoque, financeiro, fiscal e vendas em uma única plataforma.
+        </p>
+        <div class="mt-5 flex gap-3">
+          <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" class="text-white/50 hover:text-white" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" class="text-white/50 hover:text-white" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M7 10v7M7 7.5v.01M12 17v-4.5a2 2 0 0 1 4 0V17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+          <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" class="text-white/50 hover:text-white" aria-label="YouTube">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" stroke="currentColor" stroke-width="1.6"/><path d="M10 9l5 3-5 3V9z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+
+      {FOOTER_COLUMNS.map((col) => (
+        <div>
+          <p class="mb-3 text-sm font-semibold text-white">{col.title}</p>
+          <ul class="space-y-2">
+            {col.links.map((link) => (
+              <li>
+                <a
+                  href={link.href === '#whatsapp' ? whatsappUrl() : link.href}
+                  target={link.href === '#whatsapp' ? '_blank' : undefined}
+                  rel={link.href === '#whatsapp' ? 'noopener noreferrer' : undefined}
+                  class="text-sm text-white/55 hover:text-white"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} Lojiva — um produto da Evolvere Software.</p>
+      <div class="flex gap-4">
+        <a href="/termos" class="hover:text-white/70">Termos de uso</a>
+        <a href="/privacidade" class="hover:text-white/70">Política de privacidade</a>
+      </div>
+    </div>
+  </div>
+</footer>

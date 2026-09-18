@@ -1,0 +1,54 @@
+---
+title: "Fiscal: NF-e e NFC-e"
+description: "Emissão fiscal na Lojiva: NF-e e NFC-e direto do PDV ou do módulo fiscal, com certificado digital A1."
+updatedAt: 2026-09-14
+planMinimo: "Elite (ou plano de nota fiscal avulso)"
+relatedFeatures: ["pdv", "financeiro", "trocas-e-devolucoes"]
+relatedSegments: ["varejo-multicanal"]
+relatedGuides: ["nfe-ou-nfce-quando-usar-cada-uma"]
+relatedGlossary: ["nfe", "nfce", "cfop", "cst", "csosn", "tef"]
+faq:
+  - question: "A Lojiva emite CT-e ou NFS-e?"
+    answer: "Não no momento. A emissão de CT-e (transporte) e NFS-e (serviços) está em desenvolvimento e não está disponível para uso hoje — apenas NF-e e NFC-e podem ser emitidas."
+  - question: "Preciso de certificado digital para emitir nota fiscal?"
+    answer: "Sim. É necessário configurar um certificado digital A1 na Lojiva para habilitar a emissão de NF-e e NFC-e."
+  - question: "A nota fiscal pode ser emitida automaticamente após o pagamento?"
+    answer: "Sim, é possível configurar emissão fiscal automática de NF-e ou NFC-e assim que um pagamento é confirmado no PDV."
+  - question: "A emissão de nota fiscal está incluída no plano principal?"
+    answer: "A emissão fiscal está disponível a partir do plano Elite, ou pode ser contratada separadamente através de um dos planos de nota fiscal, cobrados por volume de notas emitidas."
+---
+
+import CalloutBox from '@/components/ui/CalloutBox.astro';
+
+Emitir nota fiscal fora do sistema de vendas é uma fonte comum de erro: divergência entre o que foi vendido e o que foi declarado, atraso na emissão, ou dependência de outro sistema só para essa etapa. Na Lojiva, a emissão fiscal é parte do mesmo fluxo da venda.
+
+## O que a Lojiva emite hoje
+
+A Lojiva emite **NF-e (nota fiscal eletrônica)** e **NFC-e (cupom fiscal eletrônico para consumidor final)**, diretamente a partir do PDV ou do módulo fiscal, para empresas com certificado digital configurado.
+
+<CalloutBox variant="warning" title="CT-e e NFS-e ainda não estão disponíveis">
+  A emissão de CT-e (conhecimento de transporte) e NFS-e (nota fiscal de serviço) está em desenvolvimento e não pode
+  ser utilizada hoje. Se a sua operação depende desses documentos, confirme com a equipe da Lojiva antes de migrar.
+</CalloutBox>
+
+## Como configurar a emissão fiscal
+
+A configuração fiscal envolve informar CNPJ, inscrição estadual e regime tributário da empresa (Simples Nacional, Lucro Presumido, Lucro Real ou MEI), fazer o upload do **certificado digital A1**, escolher o ambiente (homologação ou produção) e habilitar os documentos desejados — NF-e e/ou NFC-e — com série e numeração próprias.
+
+## Emissão automática a partir do PDV
+
+É possível configurar a Lojiva para emitir NF-e ou NFC-e automaticamente assim que um pagamento é confirmado no PDV, sem precisar de uma ação manual adicional depois da venda.
+
+## Cancelamento de nota fiscal
+
+Uma nota autorizada não pode ser editada. Caso seja necessário corrigir uma venda já faturada, o caminho é cancelar a nota dentro do prazo definido pela legislação e emitir uma nova, se aplicável.
+
+<CalloutBox title="Sobre regras fiscais e a reforma tributária">
+  Prazos de cancelamento, regras de CFOP/CST/CSOSN e a aplicação da reforma tributária (IBS/CBS) variam conforme a
+  legislação vigente e o estado da empresa. Este conteúdo descreve como o sistema funciona, não substitui orientação
+  contábil ou jurídica — consulte seu contador para decisões fiscais específicas.
+</CalloutBox>
+
+## Planos
+
+A emissão fiscal está incluída no plano Elite, ou pode ser contratada separadamente através de um plano de nota fiscal avulso, cobrado por volume de notas emitidas por mês. Veja os valores em [planos e preços](/precos).

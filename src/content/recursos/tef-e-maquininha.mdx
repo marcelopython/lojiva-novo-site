@@ -1,0 +1,109 @@
+---
+title: "TEF e maquininha integrada (Smart TEF)"
+description: "Smart TEF: cobrança de cartão e PIX direto na maquininha a partir do PDV da Lojiva, com conciliação e impressão fiscal acopladas à venda."
+updatedAt: 2026-09-15
+relatedFeatures: ["pdv", "financeiro", "link-de-pagamento", "fiscal-nfe-nfce"]
+relatedSegments: ["varejo-multicanal", "loja-de-roupas-e-moda"]
+relatedGuides: []
+relatedGlossary: ["tef", "pdv"]
+faq:
+  - question: "O que é o Smart TEF da Lojiva?"
+    answer: "Smart TEF é a integração de TEF (Transferência Eletrônica de Fundos) própria da Lojiva. Ela conecta o PDV diretamente à maquininha, de forma que o valor da cobrança é enviado automaticamente para o equipamento, sem digitação manual, tanto para cartão quanto para PIX."
+  - question: "O Smart TEF cobra por PIX além de cartão?"
+    answer: "Sim. O Smart TEF envia a cobrança para a maquininha tanto para pagamento com cartão (crédito e débito) quanto para PIX, direto a partir da venda no PDV."
+  - question: "Preciso digitar o valor na maquininha?"
+    answer: "Não. Com o Smart TEF, o valor da venda é enviado do PDV diretamente para a maquininha, o que elimina a digitação manual e o risco de cobrar um valor diferente do da venda."
+  - question: "A nota fiscal sai junto com a cobrança na maquininha?"
+    answer: "O Smart TEF pode acionar a emissão fiscal automática (NF-e ou NFC-e) a partir do pagamento confirmado, e a impressão do comprovante é acoplada ao ciclo da cobrança, quando a emissão fiscal está configurada para a empresa."
+  - question: "Quais maquininhas e adquirentes funcionam com o Smart TEF?"
+    answer: "O Smart TEF é homologado com Rede, Cielo, Getnet, Stone, PagBank, Sicredi, Sipag, Mercado Pago, PicPay, Vero, Safrapay, Claropay, Caixa, Bin (Fiserv), Punto, Justa, Elgin Pay, Adiq, RedeFlex e XP Empresas Pay. Confirme com a equipe da Lojiva o modelo específico do seu equipamento."
+  - question: "Quanto custa a maquininha integrada (Smart TEF)?"
+    answer: "A maquininha integrada custa R$ 60 por mês pela primeira maquininha e R$ 30 por mês por maquininha adicional. Funciona com as principais adquirentes do mercado, sem precisar trocar de maquininha."
+---
+
+import BrandGrid from '@/components/ui/BrandGrid.astro';
+import MaquininhasImage from '@/components/ui/MaquininhasImage.astro';
+
+Digitar o valor da venda duas vezes — uma no sistema, outra na maquininha — é um dos erros mais comuns e mais caros no balcão: cobra-se um valor diferente do vendido, a fila trava, e a conferência do caixa no fim do dia vira um quebra-cabeça. O Smart TEF, a integração de TEF própria da Lojiva, existe para eliminar esse retrabalho.
+
+## O que é o Smart TEF
+
+Smart TEF é o sistema de [TEF](/glossario/tef) (Transferência Eletrônica de Fundos) integrado da Lojiva. Ele conecta o [PDV](/recursos/pdv) diretamente à maquininha de pagamento, de forma que o valor da cobrança é enviado do sistema para o equipamento automaticamente — sem digitação manual.
+
+## Cartão e PIX na mesma maquininha
+
+O Smart TEF envia a cobrança para a maquininha tanto para **cartão** (crédito e débito) quanto para **PIX**, direto a partir da venda no PDV. Quando uma venda tem mais de uma cobrança — por exemplo, num pagamento dividido — o sistema organiza cada cobrança em sequência, acompanhando o status de cada uma dentro do próprio PDV.
+
+## Maquininhas e adquirentes homologadas
+
+O Smart TEF é homologado com as principais adquirentes e maquininhas do mercado brasileiro. Se a sua loja já usa uma delas, dá para integrar ao PDV da Lojiva:
+
+<BrandGrid brands={[
+  "Rede",
+  "Cielo",
+  "Getnet",
+  "Stone",
+  "PagBank",
+  "Sicredi",
+  "Sipag",
+  "Mercado Pago",
+  "PicPay",
+  "Vero",
+  "Safrapay",
+  "Claropay",
+  "Caixa",
+  "Bin (Fiserv)",
+  "Punto",
+  "Justa",
+  "Elgin Pay",
+  "Adiq",
+  "RedeFlex",
+  "XP Empresas Pay",
+]} />
+
+Veja abaixo os modelos de maquininha homologados para o Smart TEF, agrupados por adquirente:
+
+<MaquininhasImage />
+
+A disponibilidade pode variar conforme o modelo específico do equipamento. Confirme com a equipe da Lojiva a compatibilidade da sua maquininha antes de contratar.
+
+## Emissão fiscal e comprovante acoplados à cobrança
+
+A cobrança pelo Smart TEF pode acionar a emissão fiscal automática de [NF-e ou NFC-e](/recursos/fiscal-nfe-nfce) a partir do pagamento confirmado, com a impressão do comprovante acoplada ao ciclo da cobrança. Na prática, isso significa uma etapa a menos no balcão: a venda, o pagamento na maquininha e o documento fiscal fazem parte do mesmo fluxo.
+
+## Recebíveis e conciliação
+
+Além do momento da venda, o Smart TEF alimenta o [financeiro](/recursos/financeiro): os recebíveis das cobranças por cartão ficam registrados no sistema, e há um processo de conciliação para acompanhar o que foi cobrado, autorizado e recebido — sem depender de conferir extrato da adquirente por fora.
+
+## Por que vale a pena ter o TEF integrado
+
+A maquininha "solta", sem integração, obriga o operador a digitar o valor duas vezes e a loja a conciliar cartão na mão. Com o Smart TEF, a maquininha vira parte do sistema de vendas:
+
+| No dia a dia | Maquininha solta | Com o Smart TEF |
+| --- | --- | --- |
+| Valor cobrado na maquininha | Digitado à mão pelo operador | Enviado automaticamente do PDV |
+| Risco de cobrar valor errado | Existe (digitação manual) | Eliminado |
+| PIX na maquininha | Processo à parte | No mesmo fluxo da venda |
+| Recebível do cartão | Conferido no extrato da adquirente | Registrado e conciliado no sistema |
+| Cupom fiscal (NFC-e) | Emitido em outra etapa | Acoplado à cobrança |
+| Fechamento de caixa | Conferência manual | Bate com o que foi cobrado |
+
+## Como se conecta ao restante da Lojiva
+
+O Smart TEF é o elo entre três módulos que normalmente ficam desconectados em outras operações: o [PDV](/recursos/pdv) (onde a venda acontece), o [fiscal](/recursos/fiscal-nfe-nfce) (onde a nota é emitida) e o [financeiro](/recursos/financeiro) (onde o recebível é controlado). Para cobranças fora do balcão — vendas por WhatsApp ou a distância — o caminho é o [link de pagamento](/recursos/link-de-pagamento).
+
+## Quanto custa a maquininha integrada
+
+<div class="not-prose my-6 rounded-2xl border border-primary/30 bg-accent p-6">
+  <p class="text-xs font-semibold uppercase tracking-wide text-accent-foreground">Maquininha integrada (Smart TEF)</p>
+  <div class="mt-2 flex flex-wrap items-baseline gap-x-2">
+    <span class="font-display text-3xl font-bold text-foreground">R$ 60</span>
+    <span class="text-sm text-muted-foreground">/mês pela primeira maquininha</span>
+  </div>
+  <p class="mt-1 text-sm font-medium text-foreground/80">+ R$ 30/mês por maquininha adicional (metade do valor)</p>
+  <p class="mt-3 text-sm text-muted-foreground">Cerca de R$ 2 por dia para tirar o risco de erro de valor, conciliar cartão automaticamente e emitir o cupom fiscal junto com a cobrança — usando a maquininha que a sua loja já tem.</p>
+</div>
+
+Para quem tem mais de um caixa ou mais de uma loja, cada maquininha adicional sai pela metade do valor — então o custo por ponto de venda cai conforme a operação cresce.
+
+> A disponibilidade do Smart TEF depende de configuração e do modelo de maquininha. Fale com a equipe da Lojiva para confirmar a compatibilidade com o seu equipamento antes de contratar.

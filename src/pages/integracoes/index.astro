@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Card from '@/components/ui/Card.astro';
+import Badge from '@/components/ui/Badge.astro';
+import { breadcrumbSchema, itemListSchema, jsonLdGraph, webPageSchema } from '@/lib/schema';
+
+const entries = (await getCollection('integracoes')).sort((a, b) => a.data.title.localeCompare(b.data.title, 'pt-BR'));
+
+const categoryLabels: Record<string, string> = {
+  marketplace: 'Marketplace',
+  logistica: 'Logística',
+  pagamento: 'Pagamento',
+};
+
+const breadcrumbs = [
+  { name: 'Início', url: '/' },
+  { name: 'Integrações', url: '/integracoes' },
+];
+
+const jsonLd = jsonLdGraph(
+  webPageSchema({ name: 'Integrações da Lojiva', description: 'Integrações reais disponíveis na Lojiva com marketplaces, logística e pagamento.', url: '/integracoes' }),
+  breadcrumbSchema(breadcrumbs),
+  itemListSchema(entries.map((e) => ({ name: e.data.title, url: `/integracoes/${e.id}` }))),
+);
+---
+
+<BaseLayout
+  title="Integrações da Lojiva | Marketplaces, logística e pagamento"
+  description="Veja as integrações disponíveis na Lojiva: Shopee, Nuvemshop, Correios, Melhor Envio e Mercado Pago."
+  jsonLd={jsonLd}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <section class="container-page pb-8 pt-4">
+    <SectionHeading eyebrow="Integrações" title="Conectada com quem sua loja já usa" description="Integrações reais e disponíveis hoje — sem promessas de recursos que ainda não existem." />
+  </section>
+  <section class="container-page pb-20">
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {entries.map((entry) => (
+        <Card href={`/integracoes/${entry.id}`} class="h-full">
+          <Badge variant="neutral">{categoryLabels[entry.data.categoria]}</Badge>
+          <h2 class="mt-3 font-display text-lg font-bold text-foreground">{entry.data.title}</h2>
+          <p class="mt-2 text-sm text-muted-foreground">{entry.data.description}</p>
+        </Card>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,61 @@
+---
+// GA4 e Meta Pixel reaproveitados do site institucional atual (Lojiva-site/index.html),
+// com a inconsistência original corrigida (o script antigo carregava G-ED5Q58KZ6T mas
+// configurava G-56B54VSZHJ — aqui os dois usam o mesmo ID).
+const GA4_ID = 'G-56B54VSZHJ';
+const META_PIXEL_ID = '1656343855281940';
+---
+
+<script is:inline src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`}></script>
+<script is:inline define:vars={{ GA4_ID }}>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+  gtag('config', GA4_ID);
+  window.gtag = gtag;
+</script>
+
+<script is:inline define:vars={{ META_PIXEL_ID }}>
+  !(function (f, b, e, v, n, t, s) {
+    if (f.fbq) return;
+    n = f.fbq = function () {
+      n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+    };
+    if (!f._fbq) f._fbq = n;
+    n.push = n;
+    n.loaded = !0;
+    n.version = '2.0';
+    n.queue = [];
+    t = b.createElement(e);
+    t.async = !0;
+    t.src = v;
+    s = b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t, s);
+  })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', META_PIXEL_ID);
+  fbq('track', 'PageView');
+</script>
+
+<script is:inline>
+  // Helpers de evento reaproveitáveis por qualquer CTA/formulário do site.
+  window.lojivaTrack = {
+    ctaClick(label) {
+      window.gtag?.('event', 'cta_click', { cta_label: label });
+      window.fbq?.('trackCustom', 'CTAClick', { label });
+    },
+    signupStart() {
+      window.gtag?.('event', 'sign_up_start');
+      window.fbq?.('track', 'InitiateCheckout');
+    },
+    leadSubmit() {
+      window.gtag?.('event', 'generate_lead');
+      window.fbq?.('track', 'Lead');
+    },
+    whatsappClick() {
+      window.gtag?.('event', 'whatsapp_click');
+      window.fbq?.('trackCustom', 'WhatsAppClick');
+    },
+  };
+</script>

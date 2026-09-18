@@ -1,0 +1,42 @@
+---
+title: "Controle de estoque"
+description: "Estoque da Lojiva: saldo em tempo real, alertas de estoque baixo, transferência entre lojas e movimentação auditável."
+updatedAt: 2026-09-14
+relatedFeatures: ["grade-cor-e-tamanho", "multi-loja", "compras-e-xml", "pdv", "catalogo-online"]
+relatedSegments: ["loja-de-roupas-e-moda", "varejo-multicanal", "atacado-e-representantes"]
+relatedGuides: ["estoque-por-cor-e-tamanho", "como-controlar-estoque-de-loja-de-roupas"]
+relatedGlossary: ["sku", "grade"]
+faq:
+  - question: "O estoque é atualizado em tempo real depois de cada venda?"
+    answer: "Sim. Toda venda no PDV, no catálogo online ou em um marketplace integrado baixa o estoque automaticamente, sem precisar de conferência manual."
+  - question: "É possível ter estoque em mais de uma loja ou depósito?"
+    answer: "Sim. A Lojiva suporta múltiplos locais de estoque por empresa, com transferência de produtos entre eles."
+  - question: "Como sei quando um produto está prestes a acabar?"
+    answer: "Cada produto (ou variação, no caso de grade) pode ter um estoque mínimo configurado. Quando o saldo disponível chega perto ou abaixo desse mínimo, o produto aparece como estoque baixo nos relatórios e no dashboard."
+---
+
+Controlar estoque sem sistema — em planilha ou de cabeça — costuma gerar dois problemas: vender um produto que já acabou, ou deixar de comprar reposição porque ninguém percebeu que o estoque estava baixo. O módulo de estoque da Lojiva existe para eliminar os dois.
+
+## Saldo em tempo real
+
+Cada venda feita no PDV, no [catálogo online](/recursos/catalogo-online) ou em um canal integrado (como [Shopee](/integracoes/shopee) ou [Nuvemshop](/integracoes/nuvemshop)) baixa o estoque automaticamente. O saldo disponível de cada produto é calculado como estoque total menos reservas — então o que aparece disponível para venda é, de fato, o que existe para vender.
+
+## Alertas de estoque baixo e parado
+
+Cada produto pode ter um estoque mínimo configurado. Quando o saldo disponível cai para esse nível ou abaixo dele, o produto passa a aparecer como estoque baixo no dashboard e nos relatórios de estoque, permitindo agir antes de faltar produto na prateleira.
+
+## Múltiplos locais de estoque e transferências
+
+A Lojiva permite cadastrar mais de um local de estoque por empresa — por exemplo, a loja física e um depósito, ou duas unidades diferentes — e transferir produtos entre eles com registro da movimentação.
+
+## Movimentações auditáveis
+
+Toda entrada, saída ou ajuste de estoque fica registrada como uma movimentação, o que permite rastrear depois o que aconteceu com um produto: se foi vendido, transferido, ajustado ou devolvido.
+
+## Inventário (contagem de estoque)
+
+Para conferir o estoque físico contra o estoque do sistema, a Lojiva tem um fluxo de inventário: abrir a contagem, registrar o que foi contado (inclusive por leitura de código de barras) e aprovar os ajustes necessários.
+
+## Para lojas com grade de cor e tamanho
+
+Para produtos com variação — como roupas e calçados — o controle de estoque funciona por [grade de cor e tamanho](/recursos/grade-cor-e-tamanho): cada combinação tem seu próprio saldo, SKU e estoque mínimo.

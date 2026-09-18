@@ -1,0 +1,81 @@
+---
+import { MAIN_NAV } from '@/data/nav';
+import { LOGIN_URL } from '@/data/plans';
+import Button from '../ui/Button.astro';
+---
+
+<header class="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-md">
+  <div class="container-page flex h-16 items-center justify-between">
+    <a href="/" class="flex items-center gap-2" aria-label="Lojiva — página inicial">
+      <img src="/logo-lojiva.svg" alt="Lojiva" width="110" height="28" />
+    </a>
+
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Navegação principal">
+      {MAIN_NAV.map((group) => {
+        const wide = group.links.length > 8;
+        return (
+          <div class="group relative">
+            <button class="flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium text-foreground/85 hover:bg-muted hover:text-foreground">
+              {group.label}
+              <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true" class="mt-0.5">
+                <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </button>
+            <div class={`invisible absolute left-0 top-full z-10 grid gap-0.5 rounded-2xl border border-border bg-card p-3 opacity-0 shadow-elegant transition-all group-hover:visible group-hover:opacity-100 ${wide ? 'w-[34rem] grid-cols-2' : 'w-72 grid-cols-1'}`}>
+              {group.links.map((link) => (
+                <a href={link.href} class="block rounded-lg px-3 py-2 hover:bg-muted">
+                  <span class="block text-sm font-medium text-foreground">{link.label}</span>
+                  {link.description && <span class="block text-xs text-muted-foreground">{link.description}</span>}
+                </a>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+      <a href="/precos" class="rounded-full px-3.5 py-2 text-sm font-medium text-foreground/85 hover:bg-muted hover:text-foreground">
+        Preços
+      </a>
+    </nav>
+
+    <div class="hidden items-center gap-3 lg:flex">
+      <a href={LOGIN_URL} class="text-sm font-medium text-foreground/85 hover:text-primary">Entrar</a>
+      <Button href="/cadastro" size="sm">Testar a Lojiva</Button>
+    </div>
+
+    <button
+      id="mobile-menu-toggle"
+      class="flex h-10 w-10 items-center justify-center rounded-lg border border-border lg:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Abrir menu"
+    >
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M2.5 5H17.5M2.5 10H17.5M2.5 15H17.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden border-t border-border bg-background lg:hidden">
+    <nav class="container-page flex flex-col gap-1 py-4" aria-label="Navegação mobile">
+      {MAIN_NAV.flatMap((g) => g.links).map((link) => (
+        <a href={link.href} class="rounded-lg px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted">
+          {link.label}
+        </a>
+      ))}
+      <a href="/precos" class="rounded-lg px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted">Preços</a>
+      <div class="mt-2 flex flex-col gap-2 border-t border-border pt-4">
+        <a href={LOGIN_URL} class="rounded-lg px-3 py-2.5 text-center text-sm font-medium text-foreground hover:bg-muted">Entrar</a>
+        <Button href="/cadastro" size="sm">Testar a Lojiva</Button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script is:inline>
+  document.getElementById('mobile-menu-toggle')?.addEventListener('click', function () {
+    const menu = document.getElementById('mobile-menu');
+    const expanded = this.getAttribute('aria-expanded') === 'true';
+    this.setAttribute('aria-expanded', String(!expanded));
+    menu?.classList.toggle('hidden');
+  });
+</script>

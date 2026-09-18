@@ -1,0 +1,56 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import { breadcrumbSchema, itemListSchema, jsonLdGraph, webPageSchema } from '@/lib/schema';
+
+const entries = (await getCollection('glossario')).sort((a, b) => a.data.title.localeCompare(b.data.title, 'pt-BR'));
+
+const groups = entries.reduce<Record<string, typeof entries>>((acc, entry) => {
+  const letter = entry.data.title[0].toUpperCase();
+  acc[letter] = acc[letter] ? [...acc[letter], entry] : [entry];
+  return acc;
+}, {});
+
+const letters = Object.keys(groups).sort((a, b) => a.localeCompare(b, 'pt-BR'));
+
+const breadcrumbs = [
+  { name: 'Início', url: '/' },
+  { name: 'Glossário', url: '/glossario' },
+];
+
+const jsonLd = jsonLdGraph(
+  webPageSchema({ name: 'Glossário de gestão de lojas', description: 'Termos de gestão, varejo, estoque e fiscal explicados de forma objetiva.', url: '/glossario' }),
+  breadcrumbSchema(breadcrumbs),
+  itemListSchema(entries.map((e) => ({ name: e.data.title, url: `/glossario/${e.id}` }))),
+);
+---
+
+<BaseLayout
+  title="Glossário de gestão de lojas, estoque e fiscal"
+  description="O que é PDV, SKU, CFOP, CST, CSOSN, NF-e, NFC-e, TEF, markup, CMV e outros termos usados na gestão de lojas."
+  jsonLd={jsonLd}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <section class="container-page pb-8 pt-4">
+    <SectionHeading eyebrow="Glossário" title="Termos de gestão, estoque, vendas e fiscal explicados" description="Cada termo respondido de forma direta: o que é, e depois o contexto completo." />
+  </section>
+  <section class="container-page pb-20">
+    <div class="mx-auto max-w-3xl space-y-8">
+      {letters.map((letter) => (
+        <div>
+          <p class="mb-3 font-display text-xl font-bold text-primary">{letter}</p>
+          <div class="grid gap-3 sm:grid-cols-2">
+            {groups[letter].map((entry) => (
+              <a href={`/glossario/${entry.id}`} class="rounded-xl border border-border bg-card p-4 hover:border-primary hover:shadow-soft">
+                <p class="font-semibold text-foreground">{entry.data.title}</p>
+                <p class="mt-1 text-sm text-muted-foreground line-clamp-2">{entry.data.shortAnswer}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

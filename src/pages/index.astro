@@ -1,0 +1,200 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Button from '@/components/ui/Button.astro';
+import Card from '@/components/ui/Card.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import TestimonialCard from '@/components/ui/TestimonialCard.astro';
+import FaqSection from '@/components/ui/FaqSection.astro';
+import BrowserFrame from '@/components/ui/BrowserFrame.astro';
+import { TESTIMONIALS } from '@/data/testimonials';
+import { whatsappUrl } from '@/data/plans';
+import { organizationSchema, websiteSchema, softwareApplicationSchema, faqSchema, jsonLdGraph } from '@/lib/schema';
+import dashboardVendas from '@/assets/dashboard-vendas.png';
+
+const features = [
+  { title: 'PDV', href: '/recursos/pdv', description: 'Vendas com split de pagamento, cartão, PIX, dinheiro e fiado, e cobrança direto na maquininha.' },
+  { title: 'TEF e maquininha', href: '/recursos/tef-e-maquininha', description: 'Smart TEF: cobrança de cartão e PIX enviada do PDV direto para a maquininha, sem digitar valor.' },
+  { title: 'Link de pagamento', href: '/recursos/link-de-pagamento', description: 'Cobre a distância por Pix, boleto ou cartão parcelado, com página de pagamento própria.' },
+  { title: 'Controle de estoque', href: '/recursos/controle-de-estoque', description: 'Saldo em tempo real, alertas de estoque baixo e transferência entre lojas ou depósitos.' },
+  { title: 'Grade de cor e tamanho', href: '/recursos/grade-cor-e-tamanho', description: 'Cada combinação de cor e tamanho como um SKU próprio, com código de barras e preço individual.' },
+  { title: 'Financeiro', href: '/recursos/financeiro', description: 'Contas a pagar e a receber, fluxo de caixa e DRE para saber exatamente quanto a loja lucra.' },
+  { title: 'Relatórios e DRE', href: '/recursos/relatorios-e-dre', description: 'Relatórios por área, DRE com selo de confiabilidade e Visão Executiva com os KPIs da loja.' },
+  { title: 'Fiscal: NF-e e NFC-e', href: '/recursos/fiscal-nfe-nfce', description: 'Emissão de nota fiscal eletrônica e cupom fiscal direto do PDV, com certificado A1.' },
+  { title: 'Trocas e devoluções', href: '/recursos/trocas-e-devolucoes', description: 'Fluxo completo de solicitação, aprovação e conclusão de trocas e devoluções.' },
+  { title: 'Representantes e comissões', href: '/recursos/representantes-e-comissoes', description: 'Vendas por representação comercial com cálculo automático de comissão.' },
+  { title: 'Multi-loja e compras', href: '/recursos/multi-loja', description: 'Várias lojas e depósitos, com transferência de estoque e entrada de compras por XML.' },
+  { title: 'Catálogo online', href: '/recursos/catalogo-online', description: 'Vitrine digital integrada ao estoque, com pedido recebido direto no WhatsApp da loja.' },
+];
+
+const segments = [
+  { title: 'Loja de roupas e moda', href: '/segmentos/loja-de-roupas-e-moda', description: 'Grade de cor e tamanho, etiquetas e giro de estoque pensados para confecção e moda.' },
+  { title: 'Atacado e representantes', href: '/segmentos/atacado-e-representantes', description: 'Cadastro de representantes, comissão e vendas por atacado com condições próprias.' },
+  { title: 'Varejo multicanal', href: '/segmentos/varejo-multicanal', description: 'Loja física, catálogo online e marketplaces vendendo a partir do mesmo estoque.' },
+];
+
+const integrations = [
+  { title: 'Shopee', href: '/integracoes/shopee' },
+  { title: 'Nuvemshop', href: '/integracoes/nuvemshop' },
+  { title: 'Correios', href: '/integracoes/correios' },
+  { title: 'Melhor Envio', href: '/integracoes/melhor-envio' },
+  { title: 'Mercado Pago', href: '/integracoes/mercado-pago' },
+];
+
+const faq = [
+  {
+    question: 'A Lojiva é indicada para qual tipo de negócio?',
+    answer: 'A Lojiva é indicada para lojas físicas, e-commerces e negócios que vendem por atacado ou representação comercial — com forte aderência a moda e vestuário, por ter controle de estoque por grade de cor e tamanho.',
+  },
+  {
+    question: 'A Lojiva emite nota fiscal?',
+    answer: 'Sim. A Lojiva emite NF-e (nota fiscal eletrônica) e NFC-e (cupom fiscal eletrônico) direto do PDV ou do módulo fiscal, mediante configuração de certificado digital A1.',
+  },
+  {
+    question: 'Preciso trocar de sistema imediatamente para testar?',
+    answer: 'Não. Você pode criar uma conta e testar a Lojiva antes de migrar sua operação. O cadastro é feito em poucos minutos com verificação por WhatsApp.',
+  },
+  {
+    question: 'A Lojiva funciona com marketplaces?',
+    answer: 'Sim. A Lojiva integra com Shopee e Nuvemshop para sincronizar estoque e centralizar os pedidos junto com as vendas da loja física e do catálogo online.',
+  },
+  {
+    question: 'Existe suporte para tirar dúvidas durante o uso?',
+    answer: 'Sim. É possível falar diretamente com a equipe da Lojiva pelo WhatsApp para tirar dúvidas sobre configuração e uso do sistema.',
+  },
+];
+
+const jsonLd = jsonLdGraph(organizationSchema(), websiteSchema(), softwareApplicationSchema(), faqSchema(faq));
+---
+
+<BaseLayout
+  title="Lojiva | Sistema de gestão para lojas: PDV, estoque, financeiro e fiscal"
+  description="A Lojiva é um sistema de gestão para lojas que reúne PDV, controle de estoque com grade de cor e tamanho, financeiro, fiscal (NF-e/NFC-e) e vendas em uma única plataforma."
+  image={dashboardVendas.src}
+  jsonLd={jsonLd}
+>
+  <!-- Hero -->
+  <section class="overflow-hidden border-b border-border bg-gradient-to-b from-accent/60 to-background py-16 sm:py-24">
+    <div class="container-page grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <span class="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary shadow-soft">
+          Sistema de gestão para lojas
+        </span>
+        <h1 class="mt-5 font-display text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl">
+          Uma única plataforma para vender, controlar estoque e cuidar do financeiro da sua loja
+        </h1>
+        <p class="mt-5 max-w-xl text-lg text-muted-foreground">
+          A Lojiva reúne PDV, controle de estoque por grade de cor e tamanho, financeiro, emissão fiscal e vendas por representantes em um só sistema — para lojas físicas, atacado e varejo multicanal.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Button href="/cadastro" size="lg" id="hero-cta-primary">Testar a Lojiva</Button>
+          <Button href={whatsappUrl('Olá! Gostaria de ver como a Lojiva funciona.')} variant="outline" size="lg" external id="hero-cta-whatsapp">
+            Falar com especialista
+          </Button>
+        </div>
+        <p class="mt-4 text-sm text-muted-foreground">Cadastro em poucos minutos, com verificação por WhatsApp.</p>
+      </div>
+      <BrowserFrame src={dashboardVendas} alt="Tela de vendas da Lojiva com a lista de pedidos, totais e filtro por canal de venda" priority />
+    </div>
+  </section>
+
+  <!-- Trust bar -->
+  <section class="border-b border-border py-10">
+    <div class="container-page">
+      <p class="text-center text-xs font-semibold uppercase tracking-wider text-muted-foreground">Usada por lojas de moda e varejo em todo o Brasil</p>
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-4 opacity-80">
+        {TESTIMONIALS.map((t) => (
+          <span class="text-sm font-semibold text-foreground/70">{t.author}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="py-20">
+    <div class="container-page">
+      <SectionHeading
+        eyebrow="Funcionalidades"
+        title="Tudo que a operação de uma loja precisa, em um só lugar"
+        description="Da venda no balcão ao fechamento do mês: PDV, estoque, financeiro e fiscal conectados, sem planilha paralela."
+      />
+      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {features.map((f) => (
+          <Card href={f.href} class="h-full">
+            <h3 class="font-display text-base font-bold text-foreground">{f.title}</h3>
+            <p class="mt-2 text-sm text-muted-foreground">{f.description}</p>
+          </Card>
+        ))}
+      </div>
+      <div class="mt-8 text-center">
+        <Button href="/recursos" variant="ghost">Ver todos os recursos →</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Segments -->
+  <section class="border-t border-border bg-muted/40 py-20">
+    <div class="container-page">
+      <SectionHeading
+        eyebrow="Segmentos"
+        title="Feita para o dia a dia de quem vende de verdade"
+        description="A Lojiva se adapta à forma como o seu negócio vende — no balcão, no atacado ou nos marketplaces."
+      />
+      <div class="mt-12 grid gap-6 sm:grid-cols-3">
+        {segments.map((s) => (
+          <Card href={s.href} class="h-full">
+            <h3 class="font-display text-lg font-bold text-foreground">{s.title}</h3>
+            <p class="mt-2 text-sm text-muted-foreground">{s.description}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Integrations -->
+  <section class="py-20">
+    <div class="container-page">
+      <SectionHeading eyebrow="Integrações" title="Conectada com quem sua loja já usa" />
+      <div class="mt-10 flex flex-wrap justify-center gap-4">
+        {integrations.map((i) => (
+          <a href={i.href} class="rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground shadow-soft hover:border-primary hover:text-primary">
+            {i.title}
+          </a>
+        ))}
+      </div>
+      <div class="mt-8 text-center">
+        <Button href="/integracoes" variant="ghost">Ver todas as integrações →</Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="border-t border-border bg-muted/40 py-20">
+    <div class="container-page">
+      <SectionHeading eyebrow="Depoimentos" title="O que os lojistas dizem" />
+      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {TESTIMONIALS.map((t) => <TestimonialCard {...t} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-16">
+    <div class="container-page mx-auto max-w-3xl">
+      <FaqSection items={faq} title="Perguntas frequentes sobre a Lojiva" />
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="border-t border-border bg-surface-dark py-16">
+    <div class="container-page text-center">
+      <h2 class="font-display text-3xl font-bold text-white sm:text-4xl">Pronto para organizar a gestão da sua loja?</h2>
+      <p class="mx-auto mt-4 max-w-xl text-white/60">Comece a testar a Lojiva agora ou fale com um especialista antes de decidir.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <Button href="/cadastro" size="lg">Testar a Lojiva</Button>
+        <Button href={whatsappUrl('Olá! Gostaria de ver como a Lojiva funciona.')} variant="outline" size="lg" external class="!border-white/20 !bg-transparent !text-white hover:!bg-white/10">
+          Falar com especialista
+        </Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

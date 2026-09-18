@@ -1,0 +1,37 @@
+---
+type Props = {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'ghost' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+  external?: boolean;
+  id?: string;
+};
+
+const { href, variant = 'primary', size = 'md', class: className = '', external = false, id } = Astro.props;
+
+const base = 'inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-transform duration-150 hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2';
+
+const variants: Record<string, string> = {
+  primary: 'bg-primary text-primary-foreground shadow-soft hover:bg-primary-deep',
+  secondary: 'bg-surface-dark text-white shadow-soft hover:bg-black',
+  outline: 'border border-border bg-card text-foreground hover:bg-muted',
+  ghost: 'text-foreground hover:bg-muted',
+};
+
+const sizes: Record<string, string> = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-5 py-2.5 text-sm',
+  lg: 'px-7 py-3.5 text-base',
+};
+---
+
+<a
+  id={id}
+  href={href}
+  class={`${base} ${variants[variant]} ${sizes[size]} ${className}`}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+>
+  <slot />
+</a>

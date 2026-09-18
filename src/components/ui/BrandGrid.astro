@@ -1,0 +1,14 @@
+---
+type Props = {
+  brands: string[];
+};
+const { brands } = Astro.props;
+---
+
+<ul class="not-prose my-6 grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:grid-cols-4" role="list">
+  {brands.map((brand) => (
+    <li class="flex items-center justify-center rounded-xl border border-border bg-card px-3 py-3 text-center text-sm font-semibold text-foreground shadow-soft">
+      {brand}
+    </li>
+  ))}
+</ul>

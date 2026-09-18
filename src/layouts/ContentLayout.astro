@@ -1,0 +1,86 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import FaqSection from '@/components/ui/FaqSection.astro';
+import RelatedLinks from '@/components/ui/RelatedLinks.astro';
+import Badge from '@/components/ui/Badge.astro';
+import { breadcrumbSchema, faqSchema, articleSchema, webPageSchema, jsonLdGraph } from '@/lib/schema';
+
+type Crumb = { name: string; url: string };
+type RelatedGroup = { title: string; items: { title: string; href: string }[] };
+
+type Props = {
+  kicker: string;
+  title: string;
+  description: string;
+  breadcrumbs: Crumb[];
+  updatedAt?: Date;
+  publishedAt?: Date;
+  faq?: { question: string; answer: string }[];
+  relatedGroups?: RelatedGroup[];
+  isArticle?: boolean;
+  planMinimo?: string;
+};
+
+const {
+  kicker,
+  title,
+  description,
+  breadcrumbs,
+  updatedAt,
+  publishedAt,
+  faq = [],
+  relatedGroups = [],
+  isArticle = false,
+  planMinimo,
+} = Astro.props;
+
+const url = Astro.url.pathname;
+
+const nodes = [
+  webPageSchema({ name: title, description, url }),
+  breadcrumbSchema(breadcrumbs),
+  faqSchema(faq),
+  isArticle
+    ? articleSchema({
+        headline: title,
+        description,
+        url,
+        datePublished: publishedAt?.toISOString(),
+        dateModified: updatedAt?.toISOString(),
+      })
+    : null,
+];
+
+const jsonLd = jsonLdGraph(...nodes);
+
+const dateFormatter = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'UTC' });
+---
+
+<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <article class="container-page pb-16 pt-2">
+    <header class="mx-auto max-w-3xl text-center">
+      <span class="inline-flex items-center rounded-full bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent-foreground">
+        {kicker}
+      </span>
+      <h1 class="mt-4 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{title}</h1>
+      <p class="mt-4 text-lg text-muted-foreground">{description}</p>
+
+      <div class="mt-4 flex flex-wrap items-center justify-center gap-3 text-xs text-muted-foreground">
+        {updatedAt && <span>Atualizado em {dateFormatter.format(updatedAt)}</span>}
+        {planMinimo && <Badge variant="neutral">Disponível a partir do plano {planMinimo}</Badge>}
+      </div>
+    </header>
+
+    <div class="prose-content mx-auto mt-10">
+      <slot />
+    </div>
+
+    <div class="mx-auto max-w-3xl">
+      <FaqSection items={faq} />
+      <RelatedLinks groups={relatedGroups} />
+    </div>
+  </article>
+</BaseLayout>

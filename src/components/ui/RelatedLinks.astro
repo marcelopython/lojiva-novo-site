@@ -1,0 +1,28 @@
+---
+type Group = { title: string; items: { title: string; href: string }[] };
+type Props = { groups: Group[] };
+const { groups } = Astro.props;
+const visibleGroups = groups.filter((g) => g.items.length > 0);
+---
+
+{visibleGroups.length > 0 && (
+  <section class="border-t border-border py-12">
+    <h2 class="mb-6 text-2xl font-bold text-foreground">Conteúdo relacionado</h2>
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {visibleGroups.map((group) => (
+        <div>
+          <p class="mb-3 text-xs font-semibold uppercase tracking-wide text-primary">{group.title}</p>
+          <ul class="space-y-2">
+            {group.items.map((item) => (
+              <li>
+                <a href={item.href} class="text-sm font-medium text-foreground hover:text-primary hover:underline">
+                  {item.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+)}

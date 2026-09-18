@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import Card from '@/components/ui/Card.astro';
+import { breadcrumbSchema, itemListSchema, jsonLdGraph, webPageSchema } from '@/lib/schema';
+
+const entries = (await getCollection('segmentos')).sort((a, b) => a.data.title.localeCompare(b.data.title, 'pt-BR'));
+
+const breadcrumbs = [
+  { name: 'Início', url: '/' },
+  { name: 'Segmentos', url: '/segmentos' },
+];
+
+const jsonLd = jsonLdGraph(
+  webPageSchema({ name: 'Segmentos atendidos pela Lojiva', description: 'Segmentos de negócio em que a Lojiva tem aderência real.', url: '/segmentos' }),
+  breadcrumbSchema(breadcrumbs),
+  itemListSchema(entries.map((e) => ({ name: e.data.title, url: `/segmentos/${e.id}` }))),
+);
+---
+
+<BaseLayout
+  title="Segmentos | Para quem a Lojiva é indicada"
+  description="Veja como a Lojiva se adapta a lojas de roupas e moda, atacado com representantes e varejo multicanal."
+  jsonLd={jsonLd}
+>
+  <Breadcrumbs items={breadcrumbs} />
+  <section class="container-page pb-8 pt-4">
+    <SectionHeading eyebrow="Segmentos" title="Para quem a Lojiva é indicada" description="A Lojiva não é genérica: cada segmento usa um conjunto diferente de funcionalidades do sistema." />
+  </section>
+  <section class="container-page pb-20">
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {entries.map((entry) => (
+        <Card href={`/segmentos/${entry.id}`} class="h-full">
+          <h2 class="font-display text-lg font-bold text-foreground">{entry.data.title}</h2>
+          <p class="mt-2 text-sm text-muted-foreground">{entry.data.description}</p>
+        </Card>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

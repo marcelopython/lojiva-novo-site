@@ -1,0 +1,15 @@
+---
+type Props = {
+  class?: string;
+  href?: string;
+};
+
+const { class: className = '', href } = Astro.props;
+const classes = `block rounded-2xl border border-border bg-card p-6 shadow-soft transition-transform ${href ? 'hover:-translate-y-1 hover:border-primary/40' : ''} ${className}`;
+---
+
+{href ? (
+  <a href={href} class={classes}><slot /></a>
+) : (
+  <div class={classes}><slot /></div>
+)}

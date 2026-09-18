@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /cadastro
+Disallow: /api/
+
+Sitemap: https://www.lojiva.com.br/sitemap-index.xml

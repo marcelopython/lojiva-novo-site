@@ -1,0 +1,24 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import { whatsappUrl } from '@/data/plans';
+
+const breadcrumbs = [
+  { name: 'Início', url: '/' },
+  { name: 'Termos de uso', url: '/termos' },
+];
+---
+
+<BaseLayout title="Termos de uso" description="Termos de uso da Lojiva." noindex>
+  <Breadcrumbs items={breadcrumbs} />
+  <section class="container-page mx-auto max-w-2xl pb-20 pt-4">
+    <h1 class="font-display text-3xl font-bold text-foreground">Termos de uso</h1>
+    <p class="mt-4 text-muted-foreground">
+      Esta página está em elaboração pela equipe jurídica da Lojiva. Para dúvidas sobre contratação, cancelamento ou
+      uso do sistema, fale diretamente com a nossa equipe.
+    </p>
+    <p class="mt-4 text-sm text-muted-foreground">
+      Contato: <a href={whatsappUrl('Olá! Tenho uma dúvida sobre os termos de uso da Lojiva.')} class="text-primary underline">WhatsApp da Lojiva</a>
+    </p>
+  </section>
+</BaseLayout>

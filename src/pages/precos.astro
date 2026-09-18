@@ -1,0 +1,133 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import PlanCard from '@/components/ui/PlanCard.astro';
+import FaqSection from '@/components/ui/FaqSection.astro';
+import Button from '@/components/ui/Button.astro';
+import { PLANS, FISCAL_PLANS, formatBRL, whatsappUrl } from '@/data/plans';
+import { breadcrumbSchema, faqSchema, jsonLdGraph, webPageSchema } from '@/lib/schema';
+
+const breadcrumbs = [
+  { name: 'Início', url: '/' },
+  { name: 'Preços', url: '/precos' },
+];
+
+const faq = [
+  {
+    question: 'Existe período de teste antes de contratar um plano?',
+    answer: 'Sim. Você pode criar uma conta e testar a Lojiva antes de decidir qual plano contratar.',
+  },
+  {
+    question: 'Os planos têm fidelidade?',
+    answer: 'Os planos são mensais. Você pode cancelar quando quiser diretamente pelo painel ou falando com a equipe da Lojiva.',
+  },
+  {
+    question: 'A emissão de nota fiscal está incluída no plano principal?',
+    answer: 'A emissão de nota fiscal (NF-e/NFC-e) está disponível a partir do plano Elite ou pode ser contratada separadamente através de um dos planos de nota fiscal, cobrados por volume de notas emitidas.',
+  },
+  {
+    question: 'O que acontece se eu ultrapassar o limite de usuários ou locais de estoque do meu plano?',
+    answer: 'Cada plano tem limites de usuários, locais de estoque e integrações. Para aumentar esses limites, é necessário migrar para um plano superior.',
+  },
+  {
+    question: 'Quanto custa a maquininha integrada (TEF)?',
+    answer: 'O TEF (Smart TEF) é um complemento cobrado à parte do plano: R$ 60 por mês pela primeira maquininha e R$ 30 por mês por maquininha adicional. Ele conecta a maquininha ao PDV para cobrar cartão e PIX sem digitar o valor, com conciliação e cupom fiscal acoplados.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  webPageSchema({ name: 'Preços da Lojiva', description: 'Planos e preços do sistema de gestão Lojiva.', url: '/precos' }),
+  breadcrumbSchema(breadcrumbs),
+  faqSchema(faq),
+);
+---
+
+<BaseLayout
+  title="Preços da Lojiva | Planos para lojas de todos os tamanhos"
+  description="Conheça os planos da Lojiva, de R$ 97 a R$ 899 por mês, com PDV, estoque, financeiro, fiscal e relatórios. Sem fidelidade, cancele quando quiser."
+  jsonLd={jsonLd}
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="container-page pb-8 pt-4">
+    <SectionHeading
+      eyebrow="Preços"
+      title="Um plano para cada fase do seu negócio"
+      description="Comece pequeno e evolua conforme sua operação cresce. Sem fidelidade — cancele quando quiser."
+    />
+  </section>
+
+  <section class="container-page pb-16">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+      {PLANS.map((plan) => <PlanCard plan={plan} />)}
+    </div>
+  </section>
+
+  <section class="border-t border-border bg-muted/40 py-16">
+    <div class="container-page">
+      <SectionHeading eyebrow="Fiscal" title="Planos de nota fiscal" description="Emissão de NF-e e NFC-e cobrada por volume de notas, independente do plano principal." />
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {FISCAL_PLANS.map((plan) => (
+          <div class="relative flex flex-col rounded-2xl border border-border bg-card p-6 shadow-soft">
+            {plan.badge && (
+              <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
+                {plan.badge}
+              </span>
+            )}
+            <h3 class="font-display text-lg font-bold text-foreground">{plan.nome}</h3>
+            <div class="mt-3 flex items-baseline gap-1">
+              <span class="font-display text-xl font-bold text-foreground">{formatBRL(plan.precoCentavos)}</span>
+              <span class="text-sm text-muted-foreground">/mês</span>
+            </div>
+            <p class="mt-3 text-sm text-foreground/80"><strong>{plan.notasIncluidas}</strong> notas incluídas</p>
+            <p class="mt-1 text-sm text-muted-foreground">+ {formatBRL(plan.precoNotaAdicionalCentavos)} por nota adicional</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-border py-16">
+    <div class="container-page">
+      <SectionHeading eyebrow="Complementos" title="Maquininha integrada (TEF)" description="Conecte a maquininha ao PDV e cobre cartão e PIX sem digitar o valor, com conciliação e cupom fiscal acoplados. Cobrado à parte do plano." />
+      <div class="mx-auto mt-10 max-w-xl">
+        <div class="flex flex-col rounded-2xl border border-primary/30 bg-accent p-8 shadow-soft">
+          <h3 class="font-display text-lg font-bold text-foreground">Smart TEF</h3>
+          <div class="mt-3 flex flex-wrap items-baseline gap-x-2">
+            <span class="font-display text-4xl font-bold text-foreground">R$ 60</span>
+            <span class="text-sm text-muted-foreground">/mês pela primeira maquininha</span>
+          </div>
+          <p class="mt-1 text-sm font-medium text-foreground/80">+ R$ 30/mês por maquininha adicional</p>
+          <ul class="mt-5 space-y-2 text-sm text-foreground/85">
+            <li class="flex items-start gap-2"><span class="mt-0.5 text-success">✓</span> Cartão e PIX cobrados direto na maquininha, a partir do PDV</li>
+            <li class="flex items-start gap-2"><span class="mt-0.5 text-success">✓</span> Recebíveis registrados e conciliados no financeiro</li>
+            <li class="flex items-start gap-2"><span class="mt-0.5 text-success">✓</span> Cupom fiscal (NFC-e) acoplado à cobrança</li>
+            <li class="flex items-start gap-2"><span class="mt-0.5 text-success">✓</span> Funciona com as principais adquirentes, sem trocar de maquininha</li>
+          </ul>
+          <a href="/recursos/tef-e-maquininha" class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">
+            Ver como funciona a maquininha integrada →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-border bg-muted/40 py-16">
+    <div class="container-page mx-auto max-w-3xl">
+      <FaqSection items={faq} title="Perguntas frequentes sobre planos" />
+    </div>
+  </section>
+
+  <section class="border-t border-border bg-surface-dark py-16">
+    <div class="container-page text-center">
+      <h2 class="font-display text-2xl font-bold text-white sm:text-3xl">Ainda não sabe qual plano escolher?</h2>
+      <p class="mx-auto mt-3 max-w-xl text-white/60">Fale com um especialista e receba uma recomendação para o seu negócio.</p>
+      <div class="mt-6">
+        <Button href={whatsappUrl('Olá! Preciso de ajuda para escolher o plano ideal da Lojiva.')} variant="outline" external class="!border-white/20 !bg-transparent !text-white hover:!bg-white/10">
+          Falar com especialista
+        </Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

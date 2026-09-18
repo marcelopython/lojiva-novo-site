@@ -1,0 +1,45 @@
+---
+title: "NF-e ou NFC-e: quando usar cada uma"
+description: "Diferença entre NF-e e NFC-e e em qual situação de venda cada documento fiscal é usado."
+updatedAt: 2026-09-14
+publishedAt: 2026-09-14
+relatedFeatures: ["fiscal-nfe-nfce", "pdv"]
+relatedSegments: []
+relatedGuides: []
+relatedGlossary: ["nfe", "nfce", "cfop"]
+faq:
+  - question: "Posso emitir NFC-e para uma venda para outra empresa (CNPJ)?"
+    answer: "A NFC-e é destinada a vendas para consumidor final. Vendas para outra empresa, com direito a crédito de impostos, normalmente exigem NF-e — confirme a regra aplicável ao seu caso com seu contador."
+  - question: "Preciso emitir NF-e e NFC-e ao mesmo tempo?"
+    answer: "Depende do seu tipo de operação: uma loja que vende só no balcão para consumidor final pode operar só com NFC-e, enquanto uma loja que também vende para outras empresas pode precisar das duas."
+---
+
+import CalloutBox from '@/components/ui/CalloutBox.astro';
+
+Uma dúvida comum de quem está organizando o fiscal da loja: "eu emito NF-e ou NFC-e?" A resposta depende de quem é o comprador e do tipo de operação.
+
+## NF-e: nota fiscal eletrônica
+
+A NF-e é o documento fiscal eletrônico usado principalmente em operações entre empresas (B2B) — por exemplo, uma venda por atacado para outra empresa, ou uma transferência entre estabelecimentos.
+
+## NFC-e: cupom fiscal eletrônico
+
+A NFC-e é o documento fiscal eletrônico voltado para vendas a consumidor final, geralmente emitido no momento da venda no PDV — o equivalente eletrônico do cupom fiscal.
+
+## Como decidir qual usar
+
+Na prática, a decisão depende de quem está comprando:
+
+- **Venda para consumidor final, no balcão**: geralmente NFC-e;
+- **Venda para outra empresa, com necessidade de aproveitamento de crédito fiscal**: geralmente NF-e;
+- **Loja que atende tanto varejo quanto atacado**: pode precisar emitir os dois tipos, dependendo da venda.
+
+## Como funciona na Lojiva
+
+A Lojiva permite habilitar NF-e e NFC-e separadamente na configuração fiscal da empresa, cada uma com sua própria série e numeração, e pode emitir automaticamente o documento certo a partir do PDV. Veja mais em [Fiscal: NF-e e NFC-e](/recursos/fiscal-nfe-nfce).
+
+<CalloutBox title="Isso não é orientação fiscal ou contábil">
+  A regra sobre qual documento emitir em cada operação depende da legislação vigente, do regime tributário da empresa
+  e do estado onde ela está localizada. Este guia explica a diferença entre os documentos e como o sistema funciona
+  — não substitui a orientação do seu contador para decidir o enquadramento correto de cada venda.
+</CalloutBox>

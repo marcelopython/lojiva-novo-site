@@ -1,0 +1,32 @@
+---
+import { getCollection, render } from 'astro:content';
+import ContentLayout from '@/layouts/ContentLayout.astro';
+import { buildRelatedGroups } from '@/lib/related';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('integracoes');
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const relatedGroups = await buildRelatedGroups(entry.data);
+
+const breadcrumbs = [
+  { name: 'Início', url: '/' },
+  { name: 'Integrações', url: '/integracoes' },
+  { name: entry.data.title, url: `/integracoes/${entry.id}` },
+];
+---
+
+<ContentLayout
+  kicker={`Integração · ${entry.data.parceiro}`}
+  title={entry.data.title}
+  description={entry.data.description}
+  breadcrumbs={breadcrumbs}
+  updatedAt={entry.data.updatedAt}
+  faq={entry.data.faq}
+  relatedGroups={relatedGroups}
+>
+  <Content />
+</ContentLayout>

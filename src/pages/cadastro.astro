@@ -1,0 +1,42 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import SignupForm from '@/components/islands/SignupForm.tsx';
+import { breadcrumbSchema, jsonLdGraph, webPageSchema } from '@/lib/schema';
+
+const breadcrumbs = [
+  { name: 'Início', url: '/' },
+  { name: 'Cadastro', url: '/cadastro' },
+];
+
+const jsonLd = jsonLdGraph(
+  webPageSchema({ name: 'Criar conta na Lojiva', description: 'Crie sua conta e comece a testar a Lojiva.', url: '/cadastro' }),
+  breadcrumbSchema(breadcrumbs),
+);
+---
+
+<BaseLayout
+  title="Criar conta na Lojiva"
+  description="Crie sua conta gratuita e comece a testar a Lojiva: PDV, estoque, financeiro e fiscal em uma única plataforma."
+  jsonLd={jsonLd}
+  noindex
+>
+  <Breadcrumbs items={breadcrumbs} />
+
+  <section class="container-page grid items-center gap-12 pb-20 pt-4 lg:grid-cols-2">
+    <div>
+      <h1 class="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+        Comece a usar a Lojiva
+      </h1>
+      <p class="mt-4 max-w-md text-lg text-muted-foreground">
+        Crie sua conta em poucos minutos. Você recebe um código de verificação pelo WhatsApp informado no cadastro.
+      </p>
+      <ul class="mt-8 space-y-3 text-sm text-foreground/80">
+        <li class="flex items-start gap-2"><span class="text-success">✓</span> PDV, estoque e financeiro desde o primeiro acesso</li>
+        <li class="flex items-start gap-2"><span class="text-success">✓</span> Sem cartão de crédito para começar a testar</li>
+        <li class="flex items-start gap-2"><span class="text-success">✓</span> Cancele quando quiser, sem fidelidade</li>
+      </ul>
+    </div>
+    <SignupForm client:load />
+  </section>
+</BaseLayout>
