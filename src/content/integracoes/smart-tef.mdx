@@ -1,7 +1,7 @@
 ---
 title: "Smart TEF (maquininha integrada)"
 description: "Integração de TEF da Lojiva: conecte a maquininha da sua adquirente ao PDV para cobrar cartão e PIX sem digitar valor, com conciliação e cupom fiscal acoplados."
-updatedAt: 2026-09-18
+updatedAt: 2026-11-08
 categoria: "pagamento"
 parceiro: "Smart TEF"
 relatedFeatures: ["tef-e-maquininha", "pdv", "financeiro", "fiscal-nfe-nfce"]
@@ -12,12 +12,13 @@ faq:
   - question: "Preciso trocar de maquininha para usar o Smart TEF?"
     answer: "Não necessariamente. O Smart TEF é homologado com as principais adquirentes do mercado (como Rede, Cielo, Getnet, Stone, PagBank, entre outras). Se a sua loja já usa uma delas, normalmente dá para integrar sem trocar de equipamento — confirme o modelo com a equipe da Lojiva."
   - question: "Quanto custa a integração Smart TEF?"
-    answer: "O Smart TEF é um complemento cobrado à parte do plano: R$ 60 por mês pela primeira maquininha e R$ 30 por mês por maquininha adicional. Os detalhes de funcionamento estão na página do recurso TEF e maquininha."
+    answer: "O Smart TEF é um complemento cobrado à parte do plano: R$ 45 por mês pela primeira maquininha e R$ 20 por mês por maquininha adicional. Os detalhes estão na página do recurso TEF e maquininha."
   - question: "O que a integração sincroniza com o resto do sistema?"
     answer: "A cobrança feita na maquininha alimenta o financeiro (recebíveis e conciliação) e pode acionar a emissão fiscal (NF-e/NFC-e) a partir do pagamento confirmado, tudo ligado à venda no PDV."
 ---
 
 import BrandGrid from '@/components/ui/BrandGrid.astro';
+import MaquininhasImage from '@/components/ui/MaquininhasImage.astro';
 
 Esta é a página de **integração** do Smart TEF — focada em como conectar a maquininha da sua adquirente ao PDV da Lojiva, os pré-requisitos e o que sincroniza. Para o funcionamento completo, os benefícios e o preço detalhado, veja o recurso [TEF e maquininha integrada](/recursos/tef-e-maquininha).
 
@@ -61,7 +62,11 @@ O Smart TEF liga o [PDV](/recursos/pdv) diretamente à maquininha de pagamento. 
   "XP Empresas Pay",
 ]} />
 
-A lista de modelos homologados por adquirente e a tabela de preços estão na página do recurso [TEF e maquininha integrada](/recursos/tef-e-maquininha).
+Veja os modelos de maquininha homologados para o Smart TEF, agrupados por adquirente:
+
+<MaquininhasImage />
+
+A tabela de preços e o detalhamento de funcionamento estão na página do recurso [TEF e maquininha integrada](/recursos/tef-e-maquininha).
 
 ## Limitações
 

@@ -1,4 +1,4 @@
-// Fonte de verdade: lojiva-new-site/src/components/site/Plans.tsx
+// Fonte de verdade: Lojiva-back/config/billing_plans.php
 // plan_id reais do backend (apiadm.lojiva.com.br). Não alterar sem confirmar com o time.
 
 export type Plan = {
@@ -52,7 +52,7 @@ export const PLANS: Plan[] = [
       'Compartilhamento de pedido em PDF',
       'Relatórios',
     ],
-    limites: { usuarios: 2, locaisDeEstoque: 1, integracoes: 1 },
+    limites: { usuarios: 3, locaisDeEstoque: 1, integracoes: 1 },
   },
   {
     key: 'growth',
@@ -68,7 +68,6 @@ export const PLANS: Plan[] = [
       'Crédito para cliente (fiado)',
       'Fluxo de caixa',
       'Relatórios de vendas e estoque',
-      'CRM de vendas (pipeline)',
       'Clientes inativos (reconquista)',
       'Exportação de pedidos',
       'Impressão de etiquetas de produtos',
@@ -109,7 +108,7 @@ export const PLANS: Plan[] = [
       'Suporte prioritário',
       'Configuração avançada da empresa',
     ],
-    limites: { usuarios: 15, locaisDeEstoque: 5, integracoes: 10 },
+    limites: { usuarios: 25, locaisDeEstoque: 5, integracoes: 10 },
   },
 ];
 
@@ -123,10 +122,9 @@ export type FiscalPlan = {
 };
 
 export const FISCAL_PLANS: FiscalPlan[] = [
-  { key: 'nf_20', nome: 'NF 20', precoCentavos: 3990, notasIncluidas: 50, precoNotaAdicionalCentavos: 80 },
-  { key: 'nf_80', nome: 'NF 80', precoCentavos: 9990, badge: 'Equilíbrio', notasIncluidas: 100, precoNotaAdicionalCentavos: 70 },
-  { key: 'nf_160', nome: 'NF 160', precoCentavos: 16990, notasIncluidas: 160, precoNotaAdicionalCentavos: 60 },
-  { key: 'nf_320', nome: 'NF 320', precoCentavos: 29990, badge: 'Mais vantajoso', notasIncluidas: 320, precoNotaAdicionalCentavos: 50 },
+  { key: 'nf_20', nome: 'Fiscal Essencial', precoCentavos: 3990, notasIncluidas: 50, precoNotaAdicionalCentavos: 80 },
+  { key: 'nf_80', nome: 'Fiscal Pro', precoCentavos: 8990, badge: 'Equilíbrio', notasIncluidas: 150, precoNotaAdicionalCentavos: 60 },
+  { key: 'nf_160', nome: 'Fiscal Max', precoCentavos: 19990, notasIncluidas: 500, precoNotaAdicionalCentavos: 40 },
 ];
 
 export function formatBRL(centavos: number): string {
@@ -140,6 +138,8 @@ export function formatBRL(centavos: number): string {
 export const CADASTRO_URL_BASE = '/cadastro';
 export const SIGNUP_API_BASE = 'https://apiadm.lojiva.com.br/api';
 export const LOGIN_URL = 'https://adm.lojiva.com.br';
+export const LOGIN_NOVO_URL = 'https://adm.lojiva.com.br/login';
+export const LOGIN_ANTIGO_URL = 'https://app.lojiva.com.br/login';
 export const WHATSAPP_NUMBER = '5562994530152';
 export const WHATSAPP_DEFAULT_MESSAGE = 'Olá! Gostaria de saber mais sobre a Lojiva.';
 

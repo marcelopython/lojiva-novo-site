@@ -1,0 +1,39 @@
+---
+title: "NFS-e Nacional"
+description: "Emita NFS-e Nacional na Lojiva para municípios aderentes ao padrão nacional, com dados do serviço e pendências visíveis."
+updatedAt: 2026-11-08
+relatedFeatures: ["fiscal-nfe-nfce"]
+relatedSegments: []
+relatedGuides: []
+relatedGlossary: ["nfse"]
+faq:
+  - question: "A Lojiva emite NFS-e em qualquer município?"
+    answer: "A Lojiva oferece NFS-e Nacional para municípios que aderiram ao padrão nacional. NFS-e municipal fora desse padrão não está disponível."
+  - question: "Os dados do prestador e do tomador precisam ser digitados em cada nota?"
+    answer: "No fluxo da NFS-e Nacional, o sistema preenche o prestador com os dados da empresa e o tomador a partir do cliente cadastrado."
+  - question: "Posso ver por que a nota ainda não foi emitida?"
+    answer: "Sim. As pendências para emissão e as mensagens de erro retornadas pela prefeitura ou pelo provedor ficam visíveis no detalhe da nota."
+---
+
+import CalloutBox from '@/components/ui/CalloutBox.astro';
+
+A **NFS-e Nacional** é a nota fiscal eletrônica de serviços no padrão nacional. Na Lojiva, ela tem um fluxo próprio para montar o rascunho, verificar as pendências e acompanhar a emissão.
+
+## Habilitação e disponibilidade
+
+Habilite a NFS-e Nacional na **configuração fiscal** da empresa. A disponibilidade depende de o município ter aderido ao padrão nacional. A Lojiva não oferece, nesta versão, NFS-e municipal fora desse padrão nem CT-e.
+
+## Prestador, tomador e serviços
+
+O sistema preenche o **prestador** com os dados da empresa e o **tomador** com o cliente selecionado do cadastro. Os itens são escolhidos entre os produtos cadastrados como **serviço**, com os dados fiscais do respectivo cadastro.
+
+## Pendências e retorno da emissão
+
+Antes da emissão, o detalhe do rascunho mostra o que falta corrigir. Se a prefeitura ou o provedor retornar um erro, a mensagem fica visível para orientar a próxima ação. O rascunho pode ser revisado antes de uma nova tentativa.
+
+Veja também os demais documentos disponíveis em [Fiscal: NF-e e NFC-e](/recursos/fiscal-nfe-nfce) e o significado da sigla no [glossário de NFS-e](/glossario/nfse).
+
+<CalloutBox title="Orientação fiscal">
+  A adesão do município e as regras tributárias aplicáveis devem ser confirmadas para a sua operação. Este conteúdo
+  descreve as funções do sistema e não substitui a orientação de um contador.
+</CalloutBox>

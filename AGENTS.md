@@ -1,3 +1,13 @@
+> **Antes de qualquer tarefa neste repositório, leia, nesta ordem:**
+> 1. `../lojiva-engineering/AGENT_RULES.md` — regras obrigatórias. **A Regra 0 diz que
+>    nenhum agente comita, mergeia ou pusha.**
+> 2. `../lojiva-engineering/REPOS.md` — a seção deste repo: gate real, risco, terminal dono
+> 3. `../lojiva-engineering/BOARD.md` — confirme que sua área está livre e trave ela
+> 4. `../lojiva-engineering/tasks/<TASK-ID>/` — TASK/BUG, CONTEXT, CONTRACT, PLAN
+>
+> Este arquivo manda no **como escrever código aqui**. A memória de engenharia manda no
+> **como trabalhar**. Em conflito, `AGENT_RULES.md` vence.
+
 ## Development
 
 When starting the dev server, use background mode:

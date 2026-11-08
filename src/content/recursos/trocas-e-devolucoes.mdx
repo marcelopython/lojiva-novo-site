@@ -1,19 +1,21 @@
 ---
 title: "Trocas e devoluções"
 description: "Fluxo completo de trocas e devoluções na Lojiva: solicitação, aprovação, conclusão e cupom de crédito."
-updatedAt: 2026-09-14
+updatedAt: 2026-11-08
 relatedFeatures: ["pdv", "controle-de-estoque", "fiscal-nfe-nfce"]
 relatedSegments: ["loja-de-roupas-e-moda"]
 relatedGuides: ["como-controlar-estoque-de-loja-de-roupas"]
-relatedGlossary: ["sku"]
+relatedGlossary: ["sku", "declaracao-de-conteudo"]
 faq:
   - question: "Qual a diferença entre troca e devolução na Lojiva?"
     answer: "Troca é quando o cliente substitui um produto por outro (outro tamanho, cor ou item diferente). Devolução é quando o cliente devolve o produto sem levar outro no lugar, geralmente com ressarcimento do valor."
   - question: "A troca gera um cupom de crédito?"
-    answer: "Sim. É possível gerar um cupom de crédito para o cliente usar em uma compra futura, além do fluxo de troca direta por outro produto."
+    answer: "O crédito do cliente é lançado manualmente e pode ser usado como forma de pagamento em uma compra futura no PDV, além do fluxo de troca direta por outro produto."
   - question: "As trocas voltam para o estoque automaticamente?"
     answer: "Sim, o fluxo de trocas e devoluções é integrado ao controle de estoque, então o produto devolvido ou trocado tem seu estoque ajustado automaticamente."
 ---
+
+import CalloutBox from '@/components/ui/CalloutBox.astro';
 
 Para lojas de moda e calçados, trocas fazem parte da operação normal — tamanho errado, cor diferente da esperada, ou simplesmente o cliente que mudou de ideia. Sem um fluxo claro, isso vira uma bagunça de anotações soltas e estoque desatualizado.
 
@@ -25,9 +27,15 @@ Uma troca começa com a solicitação, vinculada ao pedido original. A partir da
 
 Quando o cliente não quer levar outro produto no lugar, o fluxo de devolução permite registrar a solicitação, aprovar, e concluir com o ressarcimento — em dinheiro, PIX, cartão de crédito, cartão de débito ou cheque, conforme a forma de pagamento original ou a política da loja.
 
-## Cupom de crédito
+Quando a loja já tem a decisão e os dados necessários, pode **criar e concluir a devolução em um passo**, sem deixar uma solicitação pendente. O relatório de devoluções pode ser gerado em **PDF** para conferência.
 
-Uma alternativa ao ressarcimento é gerar um cupom de crédito para o cliente, que pode ser usado em uma compra futura — útil para reter a venda dentro da própria loja.
+## Crédito do cliente
+
+Uma alternativa ao ressarcimento é **lançar manualmente um crédito para o cliente**. Esse saldo pode ser usado como **forma de pagamento no PDV** em uma compra futura. Confira o valor lançado antes de concluir o atendimento.
+
+## Frete e etiqueta na troca
+
+Na criação da troca, é possível cotar o frete por **Correios**, **SuperFrete** ou informar uma opção **manual**. Depois que a troca é aprovada, a loja pode gerar a etiqueta de envio da nova peça **da loja para o cliente**. Esse fluxo não gera etiqueta de logística reversa para o caminho cliente → loja.
 
 ## Estoque atualizado automaticamente
 
@@ -36,3 +44,8 @@ Produtos trocados ou devolvidos voltam para o estoque automaticamente durante o 
 ## Nota fiscal de devolução
 
 Quando a venda original teve nota fiscal emitida, o fluxo de devolução considera a emissão do documento fiscal de devolução correspondente.
+
+<CalloutBox title="Nota fiscal de devolução">
+  O documento fiscal aplicável à devolução depende da venda e das regras da empresa. Este conteúdo não substitui
+  orientação contábil; confirme o procedimento com seu contador.
+</CalloutBox>

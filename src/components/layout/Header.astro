@@ -1,12 +1,15 @@
 ---
 import { MAIN_NAV } from '@/data/nav';
-import { LOGIN_URL } from '@/data/plans';
+import { LOGIN_NOVO_URL, LOGIN_ANTIGO_URL } from '@/data/plans';
 import Button from '../ui/Button.astro';
+
+const produtoSections = ['Vendas', 'Estoque', 'Financeiro', 'Fiscal', 'Gestão'] as const;
 ---
 
 <header class="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-md">
   <div class="container-page flex h-16 items-center justify-between">
     <a href="/" class="flex items-center gap-2" aria-label="Lojiva — página inicial">
+      <img src="/logo-icon.png" alt="" width="32" height="32" />
       <img src="/logo-lojiva.svg" alt="Lojiva" width="110" height="28" />
     </a>
 
@@ -21,13 +24,31 @@ import Button from '../ui/Button.astro';
                 <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
               </svg>
             </button>
-            <div class={`invisible absolute left-0 top-full z-10 grid gap-0.5 rounded-2xl border border-border bg-card p-3 opacity-0 shadow-elegant transition-all group-hover:visible group-hover:opacity-100 ${wide ? 'w-[34rem] grid-cols-2' : 'w-72 grid-cols-1'}`}>
-              {group.links.map((link) => (
-                <a href={link.href} class="block rounded-lg px-3 py-2 hover:bg-muted">
-                  <span class="block text-sm font-medium text-foreground">{link.label}</span>
-                  {link.description && <span class="block text-xs text-muted-foreground">{link.description}</span>}
-                </a>
-              ))}
+            <div class={`invisible absolute left-0 top-full z-10 max-h-[calc(100vh-5rem)] overflow-y-auto rounded-2xl border border-border bg-card p-3 opacity-0 shadow-elegant transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 ${group.label === 'Produto' ? 'w-[48rem]' : wide ? 'w-[34rem]' : 'w-72'}`}>
+              {group.label === 'Produto' ? (
+                <div class="grid grid-cols-3 gap-4">
+                  {produtoSections.map((section) => (
+                    <div>
+                      <p class="px-3 py-2 text-xs font-bold uppercase tracking-wide text-primary">{section}</p>
+                      {group.links.filter((link) => link.section === section).map((link) => (
+                        <a href={link.href} class="block rounded-lg px-3 py-2 hover:bg-muted">
+                          <span class="block text-sm font-medium text-foreground">{link.label}</span>
+                        </a>
+                      ))}
+                    </div>
+                  ))}
+                  <a href="/recursos" class="col-span-3 rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-muted">Ver todos os recursos →</a>
+                </div>
+              ) : (
+                <div class={`grid gap-0.5 ${wide ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                  {group.links.map((link) => (
+                    <a href={link.href} class="block rounded-lg px-3 py-2 hover:bg-muted">
+                      <span class="block text-sm font-medium text-foreground">{link.label}</span>
+                      {link.description && <span class="block text-xs text-muted-foreground">{link.description}</span>}
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         );
@@ -38,44 +59,127 @@ import Button from '../ui/Button.astro';
     </nav>
 
     <div class="hidden items-center gap-3 lg:flex">
-      <a href={LOGIN_URL} class="text-sm font-medium text-foreground/85 hover:text-primary">Entrar</a>
+      <div class="group relative">
+        <button type="button" class="flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium text-foreground/85 hover:bg-muted hover:text-foreground" aria-controls="desktop-login-options">
+          Entrar
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true" class="mt-0.5">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </button>
+        <div id="desktop-login-options" class="invisible absolute right-0 top-full z-10 w-60 rounded-2xl border border-border bg-card p-2 opacity-0 shadow-elegant transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+          <a href={LOGIN_ANTIGO_URL} class="block rounded-lg px-3 py-2 hover:bg-muted">
+            <span class="block text-sm font-medium text-foreground">Versão antiga</span>
+            <span class="block text-xs text-muted-foreground">app.lojiva.com.br</span>
+          </a>
+          <a href={LOGIN_NOVO_URL} class="block rounded-lg px-3 py-2 hover:bg-muted">
+            <span class="block text-sm font-medium text-foreground">Lojiva nova</span>
+            <span class="block text-xs text-muted-foreground">adm.lojiva.com.br</span>
+          </a>
+        </div>
+      </div>
       <Button href="/cadastro" size="sm">Testar a Lojiva</Button>
     </div>
 
     <button
       id="mobile-menu-toggle"
-      class="flex h-10 w-10 items-center justify-center rounded-lg border border-border lg:hidden"
+      class="flex h-11 w-11 items-center justify-center rounded-lg border border-border lg:hidden"
       aria-expanded="false"
       aria-controls="mobile-menu"
       aria-label="Abrir menu"
     >
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <svg id="mobile-menu-open-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <path d="M2.5 5H17.5M2.5 10H17.5M2.5 15H17.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      </svg>
+      <svg id="mobile-menu-close-icon" class="hidden" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M3 3L17 17M17 3L3 17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
       </svg>
     </button>
   </div>
 
-  <div id="mobile-menu" class="hidden border-t border-border bg-background lg:hidden">
-    <nav class="container-page flex flex-col gap-1 py-4" aria-label="Navegação mobile">
-      {MAIN_NAV.flatMap((g) => g.links).map((link) => (
-        <a href={link.href} class="rounded-lg px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted">
-          {link.label}
-        </a>
+  <div id="mobile-menu" class="hidden max-h-[calc(100dvh-4rem)] flex-col border-t border-border bg-background lg:hidden">
+    <nav id="mobile-menu-links" class="container-page min-h-0 w-full flex-1 overflow-y-auto overscroll-contain py-2" aria-label="Navegação mobile">
+      {MAIN_NAV.map((group) => (
+        <details class="w-full border-b border-border/60">
+          <summary class="flex min-h-11 w-full cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 text-sm font-bold text-primary hover:bg-muted">
+            {group.label}
+            <svg class="menu-chevron h-4 w-4 shrink-0 transition-transform" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 6 5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" /></svg>
+          </summary>
+          <div class="pb-2 pl-3">
+            {group.label === 'Produto' ? produtoSections.map((section) => (
+              <details class="w-full border-l border-border/60">
+                <summary class="flex min-h-11 w-full cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 text-sm font-semibold text-foreground hover:bg-muted">
+                  {section}
+                  <svg class="menu-chevron h-4 w-4 shrink-0 transition-transform" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3 6 5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" /></svg>
+                </summary>
+                <div class="pl-2">
+                  {group.links.filter((link) => link.section === section).map((link) => (
+                    <a href={link.href} class="flex min-h-11 items-center rounded-lg px-3 py-2 text-sm text-foreground hover:bg-muted">{link.label}</a>
+                  ))}
+                </div>
+              </details>
+            )) : group.links.map((link) => (
+              <a href={link.href} class="flex min-h-11 items-center rounded-lg px-3 py-2 text-sm text-foreground hover:bg-muted">{link.label}</a>
+            ))}
+            {group.label === 'Produto' && <a href="/recursos" class="flex min-h-11 items-center rounded-lg px-3 py-2 text-sm font-semibold text-primary hover:bg-muted">Ver todos os recursos</a>}
+          </div>
+        </details>
       ))}
-      <a href="/precos" class="rounded-lg px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted">Preços</a>
-      <div class="mt-2 flex flex-col gap-2 border-t border-border pt-4">
-        <a href={LOGIN_URL} class="rounded-lg px-3 py-2.5 text-center text-sm font-medium text-foreground hover:bg-muted">Entrar</a>
-        <Button href="/cadastro" size="sm">Testar a Lojiva</Button>
-      </div>
+      <a href="/precos" class="flex min-h-11 w-full items-center rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted">Preços</a>
     </nav>
+    <div class="container-page flex w-full shrink-0 flex-col gap-2 border-t border-border bg-background py-3">
+      <Button href="/cadastro" size="sm" class="min-h-11 w-full whitespace-nowrap">Testar a Lojiva</Button>
+      <div class="grid w-full grid-cols-2 gap-2">
+        <a href={LOGIN_ANTIGO_URL} class="flex min-h-11 items-center justify-center whitespace-nowrap rounded-full border border-border px-2 text-sm font-medium text-foreground hover:bg-muted">Entrar (antiga)</a>
+        <a href={LOGIN_NOVO_URL} class="flex min-h-11 items-center justify-center whitespace-nowrap rounded-full border border-border px-2 text-sm font-medium text-foreground hover:bg-muted">Entrar (nova)</a>
+      </div>
+    </div>
   </div>
 </header>
 
+<style is:global>
+  #mobile-menu summary::-webkit-details-marker { display: none; }
+  #mobile-menu details[open] > summary .menu-chevron { transform: rotate(180deg); }
+</style>
+
 <script is:inline>
-  document.getElementById('mobile-menu-toggle')?.addEventListener('click', function () {
-    const menu = document.getElementById('mobile-menu');
-    const expanded = this.getAttribute('aria-expanded') === 'true';
-    this.setAttribute('aria-expanded', String(!expanded));
-    menu?.classList.toggle('hidden');
+  const mobileToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileOpenIcon = document.getElementById('mobile-menu-open-icon');
+  const mobileCloseIcon = document.getElementById('mobile-menu-close-icon');
+  let previousBodyOverflow = '';
+
+  function setMobileMenuOpen(open) {
+    if (!mobileToggle || !mobileMenu) return;
+    mobileMenu.classList.toggle('hidden', !open);
+    mobileMenu.classList.toggle('flex', open);
+    mobileToggle.setAttribute('aria-expanded', String(open));
+    mobileToggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    mobileOpenIcon?.classList.toggle('hidden', open);
+    mobileCloseIcon?.classList.toggle('hidden', !open);
+    if (open) {
+      previousBodyOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = previousBodyOverflow;
+      mobileMenu.querySelectorAll('details').forEach((details) => { details.open = false; });
+    }
+  }
+
+  mobileToggle?.addEventListener('click', () => {
+    setMobileMenuOpen(mobileToggle.getAttribute('aria-expanded') !== 'true');
+  });
+  mobileMenu?.addEventListener('click', (event) => {
+    if (event.target instanceof Element && event.target.closest('a')) setMobileMenuOpen(false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && mobileToggle?.getAttribute('aria-expanded') === 'true') {
+      setMobileMenuOpen(false);
+      mobileToggle.focus();
+    }
+  });
+  window.addEventListener('resize', () => {
+    if (window.matchMedia('(min-width: 1024px)').matches && mobileToggle?.getAttribute('aria-expanded') === 'true') {
+      setMobileMenuOpen(false);
+    }
   });
 </script>

@@ -1,13 +1,13 @@
 ---
 title: "Correios"
 description: "Integração da Lojiva com os Correios para cotação de frete, geração de etiqueta e rastreamento de encomendas."
-updatedAt: 2026-09-14
+updatedAt: 2026-11-08
 categoria: "logistica"
 parceiro: "Correios"
-relatedFeatures: ["controle-de-estoque", "catalogo-online"]
+relatedFeatures: ["controle-de-estoque", "catalogo-online", "trocas-e-devolucoes"]
 relatedSegments: ["varejo-multicanal"]
 relatedGuides: []
-relatedGlossary: []
+relatedGlossary: ["declaracao-de-conteudo", "nfe"]
 faq:
   - question: "É possível gerar etiqueta de envio dos Correios direto na Lojiva?"
     answer: "Sim, a partir do módulo de logística, depois de configurar a integração com os Correios."
@@ -17,6 +17,8 @@ faq:
     answer: "Sim, o módulo de logística inclui acompanhamento de rastreamento das encomendas enviadas."
 ---
 
+import CalloutBox from '@/components/ui/CalloutBox.astro';
+
 Para lojas que despacham pedidos pelo correio — seja de venda no catálogo online ou de marketplaces — gerar etiqueta e rastrear encomendas fora do sistema de vendas significa alternar entre telas e perder tempo. A integração com os Correios resolve isso dentro do módulo de logística da Lojiva.
 
 ## O que a integração permite
@@ -24,11 +26,20 @@ Para lojas que despacham pedidos pelo correio — seja de venda no catálogo onl
 - Cotar o frete de um pedido diretamente na Lojiva antes de fechar a venda;
 - Gerar a etiqueta de envio dos Correios a partir do pedido já registrado no sistema;
 - Acompanhar o rastreamento da encomenda depois de despachada.
+- Preencher a [declaração de conteúdo](/glossario/declaracao-de-conteudo) com o valor da venda, quando aplicável;
+- Incluir **NF-e ou DC-e** na etiqueta, conforme o documento correspondente ao envio.
+
+Após a aprovação de uma [troca](/recursos/trocas-e-devolucoes), também é possível gerar a etiqueta para enviar a nova peça **da loja ao cliente**. Não há etiqueta de logística reversa para o retorno do cliente à loja.
 
 ## Como configurar
 
-A integração é configurada na tela de Integrações, dentro do módulo de Logística, onde também é possível configurar o Melhor Envio como alternativa ou complemento aos Correios.
+A integração é configurada na tela de Integrações, dentro do módulo de Logística. Para comparar outra opção de cotação e etiqueta, veja o [SuperFrete](/integracoes/superfrete).
 
 ## Complementa o restante da operação
 
 A geração de etiqueta fica disponível diretamente a partir dos pedidos feitos no [PDV](/recursos/pdv), no [catálogo online](/recursos/catalogo-online) ou em marketplaces integrados, sem precisar recriar o pedido em outro sistema de envio.
+
+<CalloutBox title="Documento do envio">
+  A escolha entre NF-e e declaração de conteúdo depende da operação. Este conteúdo descreve os recursos da Lojiva e
+  não substitui orientação contábil; confirme o documento aplicável com seu contador.
+</CalloutBox>

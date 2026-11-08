@@ -1,10 +1,10 @@
 ---
 title: "Quais são as limitações da Lojiva?"
-description: "As limitações reais da Lojiva, explicadas com transparência: dependência de internet, custos separados de fiscal e TEF, limites por plano e recursos que dependem de configuração."
-shortAnswer: "As principais limitações da Lojiva são: depende de conexão com a internet (é um sistema em nuvem); a emissão fiscal e a maquininha integrada (TEF) são cobradas à parte do plano; cada plano tem limites de usuários, locais de estoque e integrações; e a configuração fiscal correta depende da empresa (idealmente com o contador). Nenhuma delas é escondida — todas têm alternativa ou contexto."
-updatedAt: 2026-09-18
+description: "Limitações reais da Lojiva: internet, custos de fiscal e TEF, NFS-e Nacional, canais de venda e limites por plano."
+shortAnswer: "A Lojiva depende de internet; fiscal e Smart TEF têm cobrança própria; cada plano tem limites; só a NFS-e Nacional está disponível; kit e preço por quantidade não valem em marketplaces; e o catálogo ainda não recebe pagamento online."
+updatedAt: 2026-11-08
 publishedAt: 2026-09-18
-relatedFeatures: ["fiscal-nfe-nfce", "tef-e-maquininha", "multi-loja"]
+relatedFeatures: ["fiscal-nfe-nfce", "nfs-e", "tef-e-maquininha", "multi-loja", "produto-kit", "preco-por-quantidade", "catalogo-online"]
 relatedSegments: ["varejo-multicanal"]
 relatedGuides: []
 relatedGlossary: ["tef"]
@@ -12,10 +12,12 @@ faq:
   - question: "A Lojiva funciona offline?"
     answer: "Não. Por ser um sistema em nuvem, precisa de conexão com a internet para operar. Veja a pergunta específica sobre funcionamento sem internet para os detalhes e alternativas."
   - question: "A nota fiscal está incluída no plano?"
-    answer: "A emissão de NF-e/NFC-e está disponível a partir do plano Elite ou pode ser contratada em um plano de nota fiscal separado, cobrado por volume de notas emitidas. Ou seja, é um custo à parte do plano principal na maioria dos casos."
+    answer: "A emissão de NF-e, NFC-e e NFS-e Nacional está disponível a partir do plano Elite ou em um plano fiscal separado, cobrado por volume de notas emitidas. A NFS-e Nacional depende da adesão do município."
   - question: "Existe limite de usuários e de lojas?"
     answer: "Sim. Cada plano tem limites de usuários, locais de estoque e integrações. Para ampliar esses limites, é necessário migrar para um plano superior. Os limites de cada plano estão na página de preços."
 ---
+
+import CalloutBox from '@/components/ui/CalloutBox.astro';
 
 Todo sistema tem limitações — o que muda é escondê-las ou explicá-las. Esta página lista as limitações reais da Lojiva, para quem cada uma importa e qual é a alternativa.
 
@@ -29,15 +31,17 @@ A Lojiva é um sistema **em nuvem**, então precisa de internet para operar, inc
 
 ## 2. Fiscal e TEF são custos à parte
 
-A [emissão de NF-e/NFC-e](/recursos/fiscal-nfe-nfce) e a [maquininha integrada (Smart TEF)](/recursos/tef-e-maquininha) são cobradas separadamente do plano principal.
+A [emissão de NF-e/NFC-e](/recursos/fiscal-nfe-nfce) está incluída no plano Elite ou pode ser contratada em um plano fiscal separado. A [maquininha integrada (Smart TEF)](/recursos/tef-e-maquininha) é um complemento cobrado à parte.
 
 - **Para quem importa:** quem precisa emitir muitas notas ou usar a maquininha integrada desde o início deve somar esses valores ao custo do plano.
 - **Por quê:** a emissão fiscal é cobrada por volume de notas, e o TEF por maquininha — assim quem não usa não paga por isso embutido.
-- **Alternativa:** os [planos de nota fiscal](/precos) são escalonados por volume, e a segunda maquininha em diante sai pela metade do valor.
+- **Alternativa:** os [planos de nota fiscal](/precos) são escalonados por volume; no Smart TEF, a primeira maquininha custa R$ 45/mês e cada adicional, R$ 20/mês.
 
 ## 3. Limites por plano
 
 Cada [plano](/precos) tem limites de **usuários, locais de estoque e integrações**.
+
+Os limites corretos estão na [página de preços](/precos): por exemplo, Crescimento permite 3 usuários e Elite, 25.
 
 - **Para quem importa:** operações que crescem rápido ou já nascem grandes (várias lojas, muitos usuários).
 - **Alternativa:** migrar para um plano superior amplia os limites; o plano Escala e o Elite já contemplam múltiplos locais de estoque e mais integrações.
@@ -49,9 +53,22 @@ A [emissão fiscal](/recursos/fiscal-nfe-nfce) usa provedor homologado, mas os *
 - **Para quem importa:** toda loja que emite nota fiscal.
 - **Alternativa:** configurar com apoio do seu contador. A Lojiva fornece a ferramenta de emissão; a definição tributária é responsabilidade da empresa.
 
-<div class="my-6 rounded-xl border border-warning/30 bg-warning/10 p-5 text-sm text-foreground/80">
-Este conteúdo é informativo e não substitui a orientação de um contador. As definições tributárias da sua operação devem ser validadas por um profissional de contabilidade.
-</div>
+## 5. Documentos fiscais disponíveis
+
+A Lojiva oferece [NFS-e Nacional](/recursos/nfs-e) somente para municípios aderentes ao padrão nacional. **NFS-e municipal e CT-e não estão disponíveis** nesta versão.
+
+## 6. Kits, preços por quantidade e canais
+
+[Kits](/recursos/produto-kit) são vendidos no PDV e em pedidos manuais, mas não no catálogo online nem em marketplaces. [Faixas de preço por quantidade](/recursos/preco-por-quantidade) valem no PDV, pedido manual e catálogo, mas **não em marketplaces**.
+
+## 7. Catálogo sem pagamento online
+
+O [catálogo online](/recursos/catalogo-online) funciona como vitrine e entrada de pedidos, mas **não oferece pagamento online** nesta versão. Para cobrar a distância, a loja pode gerar um [link de pagamento](/recursos/link-de-pagamento) separadamente.
+
+<CalloutBox title="Orientação fiscal">
+  Este conteúdo é informativo e não substitui a orientação de um contador. As definições tributárias da sua operação
+  devem ser validadas por um profissional de contabilidade.
+</CalloutBox>
 
 ## Por que listar isso abertamente
 

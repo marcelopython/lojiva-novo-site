@@ -42,11 +42,11 @@ O schema de cada coleção está em `src/content.config.ts`. Os campos `relatedF
 
 ### Regra de conteúdo (importante)
 
-Não publique como funcionalidade disponível nada que não esteja confirmado no produto. Hoje isso inclui, por exemplo: CT-e e NFS-e (existem no código mas estão desativados na interface), checkout do catálogo online, campanhas de WhatsApp em massa. Ao escrever sobre fiscal/tributário, sempre inclua o aviso de que o conteúdo não substitui orientação contábil (ver `CalloutBox` nos arquivos de `src/content/recursos/fiscal-nfe-nfce.mdx` e `src/content/guias/nfe-ou-nfce-quando-usar-cada-uma.mdx` como exemplo).
+Não publique como funcionalidade disponível nada que não esteja confirmado no produto. CT-e e NFS-e municipal ainda não estão disponíveis; somente a NFS-e Nacional pode ser divulgada, condicionada à adesão do município. Não divulgar kit no catálogo online, kit ou preços por quantidade em marketplaces, auto-baixa de frete/comissão, CRM ou multi-funil para lojistas, campanhas de WhatsApp em massa, Mercado Livre, TikTok Shop, Amazon e WhatsApp como integrações disponíveis, logística reversa ou pagamento online no catálogo. Não alterar nesta rodada o texto de checkout de `catalogo-online.mdx`. A etiqueta de troca cobre apenas o percurso loja → cliente. Ao escrever sobre fiscal/tributário, sempre inclua o aviso de que o conteúdo não substitui orientação contábil (ver `CalloutBox` nos arquivos de `src/content/recursos/fiscal-nfe-nfce.mdx` e `src/content/guias/nfe-ou-nfce-quando-usar-cada-uma.mdx` como exemplo).
 
 ## Dados centrais
 
-- `src/data/plans.ts` — planos e preços reais (fonte: `lojiva-new-site/src/components/site/Plans.tsx`), URLs de cadastro/login, número de WhatsApp oficial
+- `src/data/plans.ts` — planos e preços reais (fonte: `Lojiva-back/config/billing_plans.php`), URLs de cadastro/login, número de WhatsApp oficial
 - `src/data/nav.ts` — estrutura do menu principal e do footer
 - `src/data/testimonials.ts` — depoimentos reais (não adicionar depoimento sem nome de empresa e fonte confirmada)
 - `src/lib/schema.ts` — helpers de JSON-LD (Organization, WebSite, Article, FAQPage, BreadcrumbList, ItemList)

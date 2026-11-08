@@ -9,18 +9,30 @@ Diferencial central: controle de estoque por grade, em que cada combinação de 
 ## Recursos (funcionalidades do produto)
 
 - [PDV (frente de caixa)](https://www.lojiva.com.br/recursos/pdv): vendas com split de pagamento (cartão, PIX, dinheiro e fiado) e cobrança direto na maquininha.
+- [Controle de caixa](https://www.lojiva.com.br/recursos/controle-de-caixa): abertura, sangria, suprimento, fechamento e relatório PDF do operador ou geral com permissão.
+- [Fiado e crediário](https://www.lojiva.com.br/recursos/fiado-e-crediario): relatório de limite, saldo em aberto e crédito disponível por cliente ou representante, com filtro de excedidos e PDF.
 - [TEF e maquininha (Smart TEF)](https://www.lojiva.com.br/recursos/tef-e-maquininha): cobrança de cartão e PIX enviada do PDV para a maquininha, sem digitar valor, com conciliação e cupom fiscal acoplados.
 - [Link de pagamento](https://www.lojiva.com.br/recursos/link-de-pagamento): cobrança a distância por Pix, boleto ou cartão parcelado.
 - [Controle de estoque](https://www.lojiva.com.br/recursos/controle-de-estoque): saldo em tempo real, alertas de estoque baixo e transferência entre lojas ou depósitos.
 - [Grade de cor e tamanho](https://www.lojiva.com.br/recursos/grade-cor-e-tamanho): cada variação como SKU próprio, com código de barras e etiqueta individual.
+- [Etiquetas de código de barras](https://www.lojiva.com.br/recursos/etiquetas-codigo-de-barras): escolha produto ou variação, quantidade e modelo; baixe PDF ou ZPL.
 - [Multi-loja e multi-estoque](https://www.lojiva.com.br/recursos/multi-loja): várias lojas e depósitos com transferência de estoque.
 - [Compras e importação de XML](https://www.lojiva.com.br/recursos/compras-e-xml): entrada de estoque pela nota do fornecedor.
+- [Fornecedores](https://www.lojiva.com.br/recursos/fornecedores): cadastro de parceiros com busca por nome ou CNPJ e seção de relatório.
+- [Clientes](https://www.lojiva.com.br/recursos/clientes): cadastro, link para preenchimento, exportação PDF/CSV e crédito disponível; transferência entre usuários com permissão.
+- [Logística de pedidos](https://www.lojiva.com.br/recursos/logistica-de-pedidos): abas Embalar, Coletas e Envios para acompanhar preparação e expedição.
+- [Usuários e permissões](https://www.lojiva.com.br/recursos/usuarios-e-permissoes): usuários, grupos de permissão e ação para transferir clientes entre usuários.
+- [Dashboard e Visão Executiva](https://www.lojiva.com.br/recursos/dashboard-e-visao-executiva): vendas, valores a receber, lucro do mês e alertas de estoque, conforme o acesso.
+- [Extrato e saques](https://www.lojiva.com.br/recursos/extrato-e-saques): histórico do recebedor, dinheiro liberado/bloqueado e solicitações de saque restritas a administradores.
+- [Anúncios Shopee e Nuvemshop](https://www.lojiva.com.br/recursos/anuncios-shopee-nuvemshop): gerenciamento de anúncios e vínculos a produtos nas lojas conectadas, com permissão de marketplace.
+- [Lojiva Connect](https://www.lojiva.com.br/recursos/lojiva-connect): conexões entre lojas parceiras, itens compartilhados, mapeamentos e solicitações de abastecimento, com acesso específico.
+- [Guia do Sistema](https://www.lojiva.com.br/recursos/guia-do-sistema): trilhas e passos com progresso, filtrados pelas permissões do usuário.
 - [Financeiro](https://www.lojiva.com.br/recursos/financeiro): contas a pagar e a receber, fluxo de caixa e DRE.
 - [Relatórios, DRE e Visão Executiva](https://www.lojiva.com.br/recursos/relatorios-e-dre): KPIs e relatórios por área.
 - [Fiscal: NF-e e NFC-e](https://www.lojiva.com.br/recursos/fiscal-nfe-nfce): emissão de nota fiscal e cupom fiscal direto do PDV, com certificado digital A1.
 - [Trocas e devoluções](https://www.lojiva.com.br/recursos/trocas-e-devolucoes): fluxo completo de pós-venda.
 - [Representantes e comissões](https://www.lojiva.com.br/recursos/representantes-e-comissoes): vendas por representação comercial com cálculo automático de comissão.
-- [Metas de vendedores](https://www.lojiva.com.br/recursos/metas-de-vendedores): objetivos e acompanhamento da equipe.
+- [Metas de vendedores](https://www.lojiva.com.br/recursos/metas-de-vendedores): metas gerais ou individuais em períodos semanais a anuais, com valor atual e progresso.
 - [Catálogo online](https://www.lojiva.com.br/recursos/catalogo-online): vitrine digital integrada ao estoque, com pedido recebido no WhatsApp da loja.
 - [Agenda](https://www.lojiva.com.br/recursos/agenda): compromissos e atendimentos.
 - [Lojiva Produção (facção)](https://www.lojiva.com.br/recursos/producao): ordens de produção e terceirizados.
@@ -36,9 +48,7 @@ Diferencial central: controle de estoque por grade, em que cada combinação de 
 - [Smart TEF (maquininha integrada)](https://www.lojiva.com.br/integracoes/smart-tef)
 - [Shopee](https://www.lojiva.com.br/integracoes/shopee)
 - [Nuvemshop](https://www.lojiva.com.br/integracoes/nuvemshop)
-- [Mercado Pago](https://www.lojiva.com.br/integracoes/mercado-pago)
 - [Correios](https://www.lojiva.com.br/integracoes/correios)
-- [Melhor Envio](https://www.lojiva.com.br/integracoes/melhor-envio)
 - [SuperFrete](https://www.lojiva.com.br/integracoes/superfrete)
 
 ## Guias (conteúdo educacional)

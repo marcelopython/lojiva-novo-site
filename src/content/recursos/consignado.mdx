@@ -1,0 +1,35 @@
+---
+title: "Consignado para representantes"
+description: "Controle os envios de peças a representantes, acompanhe o acerto parcial no PDV e consulte o PDF de cada envio."
+updatedAt: 2026-11-08
+relatedFeatures: ["representantes-e-comissoes", "controle-de-estoque"]
+relatedSegments: ["atacado-e-representantes"]
+relatedGuides: []
+relatedGlossary: []
+faq:
+  - question: "Posso fazer um acerto parcial do consignado?"
+    answer: "Sim. O representante pode acertar parte das peças no PDV; cada acerto gera um pedido normal, com sua própria nota fiscal quando aplicável."
+  - question: "O envio de peças já emite uma nota fiscal?"
+    answer: "Não. O envio consignado registra a remessa de peças ao representante, mas não emite nota fiscal por si só."
+---
+
+import CalloutBox from '@/components/ui/CalloutBox.astro';
+
+Quando um representante leva peças para mostrar aos clientes, a loja precisa saber o que foi enviado, o que foi vendido e o que ainda está com ele. O fluxo de **consignado** organiza esse acompanhamento na Lojiva.
+
+## Envios organizados por representante
+
+Registre o envio das peças e agrupe vários envios no mesmo consignado. Cada envio tem um código e pode ser consultado em **PDF**, facilitando a conferência entre a loja e o representante.
+
+## Acerto parcial no PDV
+
+O acerto pode ocorrer aos poucos, conforme as peças forem vendidas. No [PDV](/recursos/pdv), cada acerto parcial vira um **pedido normal**. A nota fiscal acompanha o pedido quando a emissão estiver configurada e for aplicável. A simples remessa consignada não emite nota.
+
+## Acompanhe o restante
+
+O histórico de envios e acertos ajuda a conferir as peças ainda pendentes. O fluxo se conecta à gestão de [representantes e comissões](/recursos/representantes-e-comissoes) e ao [controle de estoque](/recursos/controle-de-estoque) da operação.
+
+<CalloutBox title="Sobre a documentação fiscal">
+  O envio consignado não emite nota por si só. A documentação fiscal aplicável ao acerto depende da operação. Este
+  conteúdo não substitui orientação contábil; confirme as regras com seu contador.
+</CalloutBox>
