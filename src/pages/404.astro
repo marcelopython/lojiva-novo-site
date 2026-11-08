@@ -1,0 +1,15 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Página não encontrada" description="A página solicitada não foi encontrada no site da Lojiva." noindex>
+  <section class="container-page py-24 text-center">
+    <h1 class="font-display text-4xl font-bold text-foreground">Página não encontrada</h1>
+    <p class="mx-auto mt-4 max-w-xl text-muted-foreground">Confira o endereço ou explore as páginas do site.</p>
+    <nav class="mt-8 flex flex-wrap justify-center gap-6 text-sm font-semibold text-primary" aria-label="Próximos passos">
+      <a href="/">Ir para o início</a>
+      <a href="/recursos">Ver recursos</a>
+      <a href="/precos">Ver preços</a>
+    </nav>
+  </section>
+</BaseLayout>

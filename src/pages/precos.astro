@@ -51,7 +51,7 @@ const jsonLd = jsonLdGraph(
   <Breadcrumbs items={breadcrumbs} />
 
   <section class="container-page pb-8 pt-4">
-    <SectionHeading
+    <SectionHeading level={1}
       eyebrow="Preços"
       title="Um plano para cada fase do seu negócio"
       description="Comece pequeno e evolua conforme sua operação cresce. Sem fidelidade — cancele quando quiser."
@@ -61,6 +61,22 @@ const jsonLd = jsonLdGraph(
   <section class="container-page pb-16">
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       {PLANS.map((plan) => <PlanCard plan={plan} />)}
+    </div>
+  </section>
+
+  <section class="border-t border-border py-16" aria-labelledby="limites-dos-planos">
+    <div class="container-page max-w-4xl">
+      <h2 id="limites-dos-planos" class="font-display text-2xl font-bold text-foreground sm:text-3xl">Limites de cada plano</h2>
+      <p class="mt-3 text-muted-foreground">Cada plano de gestão define quantos usuários, locais de estoque e integrações podem ser usados. Os limites atuais são:</p>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        {PLANS.map((plan) => (
+          <div class="rounded-xl border border-border bg-card p-5">
+            <h3 class="font-display font-bold text-foreground">{plan.nome} — {formatBRL(plan.precoCentavos)}/mês</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">Até {plan.limites.usuarios} {plan.limites.usuarios === 1 ? 'usuário' : 'usuários'}, {plan.limites.locaisDeEstoque} {plan.limites.locaisDeEstoque === 1 ? 'local de estoque' : 'locais de estoque'} e {plan.limites.integracoes} {plan.limites.integracoes === 1 ? 'integração' : 'integrações'}.</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-6 text-sm leading-relaxed text-muted-foreground">Emissão fiscal, Smart TEF, Lojiva Produção e Ads são complementos pagos à parte conforme a contratação. O plano Elite inclui a emissão de NF-e e NFC-e; os demais podem contratar um plano fiscal separado. Compare também as <a href="/perguntas/quais-as-limitacoes-da-lojiva" class="font-semibold text-primary hover:underline">limitações do sistema</a> antes de escolher.</p>
     </div>
   </section>
 

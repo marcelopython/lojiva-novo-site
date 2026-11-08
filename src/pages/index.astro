@@ -7,7 +7,7 @@ import TestimonialCard from '@/components/ui/TestimonialCard.astro';
 import FaqSection from '@/components/ui/FaqSection.astro';
 import BrowserFrame from '@/components/ui/BrowserFrame.astro';
 import { TESTIMONIALS } from '@/data/testimonials';
-import { whatsappUrl } from '@/data/plans';
+import { PLANS, formatBRL, whatsappUrl } from '@/data/plans';
 import { organizationSchema, websiteSchema, softwareApplicationSchema, faqSchema, jsonLdGraph } from '@/lib/schema';
 import dashboardVendas from '@/assets/dashboard-vendas.png';
 
@@ -48,27 +48,22 @@ const integrations = [
   { title: 'Correios', href: '/integracoes/correios' },
 ];
 
+const planPrices = PLANS.map((plan) => `${plan.nome}: ${formatBRL(plan.precoCentavos)}/mês`).join('; ');
+const planLimits = PLANS.map((plan) => `${plan.nome}: ${plan.limites.usuarios} ${plan.limites.usuarios === 1 ? 'usuário' : 'usuários'}, ${plan.limites.locaisDeEstoque} ${plan.limites.locaisDeEstoque === 1 ? 'local de estoque' : 'locais de estoque'} e ${plan.limites.integracoes} ${plan.limites.integracoes === 1 ? 'integração' : 'integrações'}`).join('; ');
+
 const faq = [
-  {
-    question: 'A Lojiva é indicada para qual tipo de negócio?',
-    answer: 'A Lojiva é indicada para lojas físicas, e-commerces e negócios que vendem por atacado ou representação comercial — com forte aderência a moda e vestuário, por ter controle de estoque por grade de cor e tamanho.',
-  },
-  {
-    question: 'A Lojiva emite nota fiscal?',
-    answer: 'Sim. A Lojiva emite NF-e (nota fiscal eletrônica) e NFC-e (cupom fiscal eletrônico) direto do PDV ou do módulo fiscal, mediante configuração de certificado digital A1.',
-  },
-  {
-    question: 'Preciso trocar de sistema imediatamente para testar?',
-    answer: 'Não. Você pode criar uma conta e testar a Lojiva antes de migrar sua operação. O cadastro é feito em poucos minutos com verificação por WhatsApp.',
-  },
-  {
-    question: 'A Lojiva funciona com marketplaces?',
-    answer: 'Sim. A Lojiva integra com Shopee e Nuvemshop para sincronizar estoque e centralizar os pedidos junto com as vendas da loja física e do catálogo online.',
-  },
-  {
-    question: 'Existe suporte para tirar dúvidas durante o uso?',
-    answer: 'Sim. É possível falar diretamente com a equipe da Lojiva pelo WhatsApp para tirar dúvidas sobre configuração e uso do sistema.',
-  },
+  { question: 'O que é a Lojiva?', answer: 'A Lojiva é um sistema de gestão (ERP) para lojas físicas e online. Reúne vendas, estoque e financeiro na mesma plataforma. Conheça a empresa e a proposta do produto.', href: '/sobre', linkLabel: 'Conhecer a Lojiva' },
+  { question: 'Para quem a Lojiva é indicada?', answer: 'A Lojiva atende lojas físicas e online, atacado e varejo multicanal. Tem forte aderência a moda e vestuário por controlar produtos por cor e tamanho, mas também aceita itens sem variação. Veja os segmentos atendidos.', href: '/segmentos', linkLabel: 'Ver segmentos' },
+  { question: 'Quais problemas a plataforma resolve?', answer: 'A plataforma reúne vendas, saldos de estoque e lançamentos financeiros para reduzir retrabalho entre controles separados. A grade permite acompanhar cada cor e tamanho individualmente, e as vendas atualizam o estoque. Veja os fluxos disponíveis.', href: '/recursos', linkLabel: 'Explorar recursos' },
+  { question: 'Quais recursos estão disponíveis?', answer: 'A Lojiva reúne PDV, controle de caixa, estoque por grade, financeiro, relatórios, catálogo online, trocas e emissão fiscal. Há também integrações e módulos complementares com disponibilidade e limites próprios. Consulte o índice de recursos para os detalhes.', href: '/recursos', linkLabel: 'Ver todos os recursos' },
+  { question: 'Como funciona a gestão de estoque por cor e tamanho?', answer: 'Cada combinação de cor e tamanho é uma variação com SKU, código de barras e saldo próprios. Assim, vender uma peça de um tamanho baixa o saldo daquela combinação. Produtos sem grade também podem ser cadastrados.', href: '/recursos/grade-cor-e-tamanho', linkLabel: 'Entender a grade' },
+  { question: 'Como funciona o PDV?', answer: 'O operador adiciona produtos por busca, código de barras ou grade e registra a forma de pagamento. O PDV aceita divisão do valor entre formas de pagamento e baixa o estoque da variação vendida. A emissão fiscal automática depende da configuração e contratação aplicáveis.', href: '/recursos/pdv', linkLabel: 'Conhecer o PDV' },
+  { question: 'A Lojiva atende atacado e varejo?', answer: 'Sim. O PDV atende vendas no balcão e o módulo de representantes organiza vendas por atacado e comissões. Há consignado e preço por quantidade para fluxos específicos, com limites por canal. Veja como esses recursos se conectam.', href: '/segmentos/atacado-e-representantes', linkLabel: 'Ver atacado e representantes' },
+  { question: 'O sistema possui emissão fiscal?', answer: 'Sim. A Lojiva oferece NF-e, NFC-e e NFS-e Nacional conforme a configuração fiscal e a contratação. A NFS-e Nacional depende da adesão do município; CT-e e NFS-e municipal fora do padrão nacional não estão disponíveis. Veja os documentos e condições.', href: '/recursos/fiscal-nfe-nfce', linkLabel: 'Ver emissão fiscal' },
+  { question: 'Como funciona a integração com TEF?', answer: 'O Smart TEF envia do PDV para a maquininha o valor da cobrança de cartão ou Pix, sem redigitação. Os recebíveis podem ser acompanhados no financeiro. O complemento é cobrado à parte do plano de gestão.', href: '/recursos/tef-e-maquininha', linkLabel: 'Ver Smart TEF' },
+  { question: 'Quais são os planos e preços?', answer: `Os planos mensais de gestão são ${planPrices}. Há planos fiscais por volume de notas e complementos contratados à parte. Compare as funcionalidades e condições de cada plano.`, href: '/precos', linkLabel: 'Comparar planos' },
+  { question: 'Quais são as limitações de cada plano?', answer: `Os limites são ${planLimits}. Fiscal, Smart TEF, Produção e Ads são complementos pagos à parte. Confira também as funcionalidades disponíveis em cada plano.`, href: '/precos', linkLabel: 'Ver limites e complementos' },
+  { question: 'Como iniciar um teste ou solicitar demonstração?', answer: 'Crie uma conta pela página de cadastro para começar a testar a Lojiva. O cadastro usa verificação pelo WhatsApp. Se preferir conversar antes, use o botão de WhatsApp do site para falar com a equipe.', href: '/cadastro', linkLabel: 'Iniciar teste' },
 ];
 
 const jsonLd = jsonLdGraph(organizationSchema(), websiteSchema(), softwareApplicationSchema(), faqSchema(faq));

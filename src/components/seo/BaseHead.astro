@@ -24,19 +24,24 @@ const {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const imageURL = new URL(image, Astro.site);
 const fullTitle = title.includes('Lojiva') ? title : `${title} | Lojiva`;
+const preview = import.meta.env.VERCEL_ENV !== 'production';
+const googleVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+const bingVerification = import.meta.env.PUBLIC_BING_SITE_VERIFICATION;
 ---
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="theme-color" content="#4f39f6" />
-<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+<meta name="theme-color" content="#0b63f4" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+{googleVerification && <meta name="google-site-verification" content={googleVerification} />}
+{bingVerification && <meta name="msvalidate.01" content={bingVerification} />}
 <link rel="sitemap" href="/sitemap-index.xml" />
 
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalURL} />
 {
-  noindex ? (
+  noindex || preview ? (
     <meta name="robots" content="noindex, nofollow" />
   ) : (
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -49,8 +54,8 @@ const fullTitle = title.includes('Lojiva') ? title : `${title} | Lojiva`;
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={imageURL} />
-<meta property="og:image:width" content="2874" />
-<meta property="og:image:height" content="1578" />
+{image === '/og-default.png' && <meta property="og:image:width" content="1200" />}
+{image === '/og-default.png' && <meta property="og:image:height" content="630" />}
 <meta property="og:image:alt" content={fullTitle} />
 <meta property="og:locale" content="pt_BR" />
 {ogType === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime} />}

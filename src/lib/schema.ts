@@ -1,3 +1,5 @@
+import { PLANS } from '../data/plans';
+
 const SITE_URL = 'https://www.lojiva.com.br';
 const ORG_NAME = 'Lojiva';
 const LEGAL_ENTITY = 'Lojiva Software LTDA';
@@ -94,25 +96,26 @@ export function softwareApplicationSchema() {
       'Controle de estoque por grade de cor e tamanho',
       'Multi-loja e multi-estoque',
       'Financeiro: contas a pagar e a receber, fluxo de caixa e DRE',
-      'Emissão fiscal NF-e e NFC-e',
+      'Emissão fiscal NF-e, NFC-e e NFS-e Nacional',
       'TEF e maquininha integrada',
       'Link de pagamento (Pix, boleto e cartão)',
       'Representantes, vendedores e comissões',
       'Trocas e devoluções',
       'Compras e importação de XML',
       'Catálogo online',
+      'Consignado para representantes',
+      'Fiado e limite de crédito por cliente',
+      'Etiquetas de código de barras por variação',
+      'Controle de caixa com abertura, sangria e fechamento',
+      'Metas de vendedores e relatórios',
+      'Preço por quantidade e produto kit no PDV',
     ],
     offers: {
-      '@type': 'Offer',
-      price: '97.00',
+      '@type': 'AggregateOffer',
+      lowPrice: (Math.min(...PLANS.map((plan) => plan.precoCentavos)) / 100).toFixed(2),
+      highPrice: (Math.max(...PLANS.map((plan) => plan.precoCentavos)) / 100).toFixed(2),
+      offerCount: PLANS.length,
       priceCurrency: 'BRL',
-      priceSpecification: {
-        '@type': 'UnitPriceSpecification',
-        price: '97.00',
-        priceCurrency: 'BRL',
-        unitText: 'MÊS',
-      },
-      availability: 'https://schema.org/InStock',
       url: `${SITE_URL}/precos`,
     },
     publisher: { '@id': `${SITE_URL}/#organization` },

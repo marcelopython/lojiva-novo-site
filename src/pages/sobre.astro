@@ -3,12 +3,18 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
 import SectionHeading from '@/components/ui/SectionHeading.astro';
 import Button from '@/components/ui/Button.astro';
-import { organizationSchema, breadcrumbSchema, jsonLdGraph } from '@/lib/schema';
+import FaqSection from '@/components/ui/FaqSection.astro';
+import { organizationSchema, breadcrumbSchema, faqSchema, jsonLdGraph } from '@/lib/schema';
 import { whatsappUrl as waUrl } from '@/data/plans';
 
 const breadcrumbs = [
   { name: 'Início', url: '/' },
   { name: 'Sobre', url: '/sobre' },
+];
+
+const faq = [
+  { question: 'Preciso trocar de sistema imediatamente para testar?', answer: 'Não. Você pode criar uma conta e testar a Lojiva antes de migrar sua operação. O cadastro é feito com verificação pelo WhatsApp.', href: '/cadastro', linkLabel: 'Criar conta' },
+  { question: 'Existe suporte para tirar dúvidas durante o uso?', answer: 'Sim. É possível falar com a equipe da Lojiva pelo WhatsApp para tirar dúvidas sobre configuração e uso do sistema.', href: '/precos', linkLabel: 'Ver planos e contato' },
 ];
 
 const jsonLd = jsonLdGraph(
@@ -22,6 +28,7 @@ const jsonLd = jsonLdGraph(
   },
   organizationSchema(),
   breadcrumbSchema(breadcrumbs),
+  faqSchema(faq),
 );
 
 const fatos = [
@@ -40,7 +47,7 @@ const fatos = [
   <Breadcrumbs items={breadcrumbs} />
 
   <section class="container-page pb-8 pt-4">
-    <SectionHeading
+    <SectionHeading level={1}
       eyebrow="Sobre"
       title="Um sistema de gestão feito para quem vende moda e varejo"
       description="A Lojiva reúne, em uma única plataforma, o que uma loja precisa para vender, controlar estoque e cuidar do financeiro — com forte especialização em operações de moda."
@@ -93,6 +100,10 @@ const fatos = [
         </div>
       ))}
     </div>
+  </section>
+
+  <section class="container-page mx-auto max-w-3xl pb-12">
+    <FaqSection items={faq} title="Dúvidas sobre começar a usar a Lojiva" />
   </section>
 
   <section class="border-t border-border bg-surface-dark py-16">

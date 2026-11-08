@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/como-funciona", "destination": "/recursos", "statusCode": 301 },
+    { "source": "/contato", "destination": "/sobre", "statusCode": 301 },
+    { "source": "/controle-de-estoque-inteligente", "destination": "/recursos/controle-de-estoque", "statusCode": 301 },
+    { "source": "/sistema-para-lojas-e-varejo", "destination": "/segmentos/varejo-multicanal", "statusCode": 301 },
+    { "source": "/teste-gratis", "destination": "/cadastro", "statusCode": 301 }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": ".*\\.vercel\\.app" }],
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    }
+  ]
+}

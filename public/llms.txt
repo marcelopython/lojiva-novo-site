@@ -30,6 +30,11 @@ Diferencial central: controle de estoque por grade, em que cada combinação de 
 - [Financeiro](https://www.lojiva.com.br/recursos/financeiro): contas a pagar e a receber, fluxo de caixa e DRE.
 - [Relatórios, DRE e Visão Executiva](https://www.lojiva.com.br/recursos/relatorios-e-dre): KPIs e relatórios por área.
 - [Fiscal: NF-e e NFC-e](https://www.lojiva.com.br/recursos/fiscal-nfe-nfce): emissão de nota fiscal e cupom fiscal direto do PDV, com certificado digital A1.
+- [NFS-e Nacional](https://www.lojiva.com.br/recursos/nfs-e): emissão de nota de serviço pelo padrão nacional onde o município aderiu.
+- [Consignado](https://www.lojiva.com.br/recursos/consignado): envio de peças a representantes e acerto parcial no PDV.
+- [Preço por quantidade](https://www.lojiva.com.br/recursos/preco-por-quantidade): faixas de preço no PDV, pedido manual e catálogo; não vale em marketplace.
+- [Produto kit](https://www.lojiva.com.br/recursos/produto-kit): kit vendido no PDV e pedido, com baixa dos componentes; não disponível no catálogo ou marketplace.
+- [Calculadora de precificação](https://www.lojiva.com.br/recursos/calculadora-de-precificacao): apoio para formar preço a partir de custos e margem.
 - [Trocas e devoluções](https://www.lojiva.com.br/recursos/trocas-e-devolucoes): fluxo completo de pós-venda.
 - [Representantes e comissões](https://www.lojiva.com.br/recursos/representantes-e-comissoes): vendas por representação comercial com cálculo automático de comissão.
 - [Metas de vendedores](https://www.lojiva.com.br/recursos/metas-de-vendedores): metas gerais ou individuais em períodos semanais a anuais, com valor atual e progresso.
@@ -92,3 +97,4 @@ Planos mensais de R$ 97 a R$ 899, sem fidelidade. Emissão fiscal e TEF são cob
 
 - A Lojiva não substitui orientação contábil. Conteúdo fiscal/tributário é informativo.
 - Não considerar como disponíveis recursos não publicados no site.
+- Este arquivo é um índice experimental para leitura por assistentes; as páginas HTML e os planos publicados são a referência para detalhes e disponibilidade.
