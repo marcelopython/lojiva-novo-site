@@ -1,7 +1,6 @@
 ---
 import { MAIN_NAV } from '@/data/nav';
 import { LOGIN_NOVO_URL, LOGIN_ANTIGO_URL } from '@/data/plans';
-import Button from '../ui/Button.astro';
 
 const produtoSections = ['Vendas', 'Estoque', 'Financeiro', 'Fiscal', 'Gestão'] as const;
 ---
@@ -77,7 +76,6 @@ const produtoSections = ['Vendas', 'Estoque', 'Financeiro', 'Fiscal', 'Gestão']
           </a>
         </div>
       </div>
-      <Button href="/cadastro" size="sm">Testar a Lojiva</Button>
     </div>
 
     <button
@@ -127,7 +125,6 @@ const produtoSections = ['Vendas', 'Estoque', 'Financeiro', 'Fiscal', 'Gestão']
       <a href="/precos" class="flex min-h-11 w-full items-center rounded-lg px-3 py-2 text-sm font-medium text-foreground hover:bg-muted">Preços</a>
     </nav>
     <div class="container-page flex w-full shrink-0 flex-col gap-2 border-t border-border bg-background py-3">
-      <Button href="/cadastro" size="sm" class="min-h-11 w-full whitespace-nowrap">Testar a Lojiva</Button>
       <div class="grid w-full grid-cols-2 gap-2">
         <a href={LOGIN_ANTIGO_URL} class="flex min-h-11 items-center justify-center whitespace-nowrap rounded-full border border-border px-2 text-sm font-medium text-foreground hover:bg-muted">Entrar (antiga)</a>
         <a href={LOGIN_NOVO_URL} class="flex min-h-11 items-center justify-center whitespace-nowrap rounded-full border border-border px-2 text-sm font-medium text-foreground hover:bg-muted">Entrar (nova)</a>

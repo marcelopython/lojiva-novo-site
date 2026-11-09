@@ -24,7 +24,7 @@ const {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const imageURL = new URL(image, Astro.site);
 const fullTitle = title.includes('Lojiva') ? title : `${title} | Lojiva`;
-const preview = import.meta.env.VERCEL_ENV !== 'production';
+const preview = import.meta.env.VERCEL_ENV === 'preview' || import.meta.env.VERCEL_ENV === 'development';
 const googleVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 const bingVerification = import.meta.env.PUBLIC_BING_SITE_VERIFICATION;
 ---

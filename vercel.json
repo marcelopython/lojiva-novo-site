@@ -1,6 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
+    { "source": "/sitemap.xml", "destination": "/sitemap-index.xml", "statusCode": 301 },
     { "source": "/como-funciona", "destination": "/recursos", "statusCode": 301 },
     { "source": "/contato", "destination": "/sobre", "statusCode": 301 },
     { "source": "/controle-de-estoque-inteligente", "destination": "/recursos/controle-de-estoque", "statusCode": 301 },

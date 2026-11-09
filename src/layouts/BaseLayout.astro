@@ -3,6 +3,7 @@ import BaseHead from '@/components/seo/BaseHead.astro';
 import Analytics from '@/components/analytics/Analytics.astro';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
+import WhatsAppFloat from '../components/ui/WhatsAppFloat.astro';
 import '@/styles/global.css';
 
 type Props = {
@@ -43,5 +44,6 @@ const { title, description, image, jsonLd, noindex, ogType, publishedTime, modif
       <slot />
     </main>
     <Footer />
+    <WhatsAppFloat />
   </body>
 </html>

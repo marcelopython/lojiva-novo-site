@@ -9,6 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "typecheck": "astro check",
+    "seo:check": "node scripts/seo-check.mjs",
+    "seo:check:live": "node scripts/seo-check.mjs --live",
     "preview": "astro preview",
     "astro": "astro"
   },
