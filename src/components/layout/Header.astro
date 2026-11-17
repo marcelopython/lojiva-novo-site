@@ -13,17 +13,17 @@ const produtoSections = ['Vendas', 'Estoque', 'Financeiro', 'Fiscal', 'Gestão']
     </a>
 
     <nav class="hidden items-center gap-1 lg:flex" aria-label="Navegação principal">
-      {MAIN_NAV.map((group) => {
+      {MAIN_NAV.map((group, index) => {
         const wide = group.links.length > 8;
         return (
-          <div class="group relative">
-            <button class="flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium text-foreground/85 hover:bg-muted hover:text-foreground">
+          <div class="desktop-dropdown relative">
+            <button type="button" aria-expanded="false" aria-controls={`desktop-nav-options-${index}`} class="flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium text-foreground/85 hover:bg-muted hover:text-foreground">
               {group.label}
               <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true" class="mt-0.5">
                 <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
               </svg>
             </button>
-            <div class={`invisible absolute left-0 top-full z-10 max-h-[calc(100vh-5rem)] overflow-y-auto rounded-2xl border border-border bg-card p-3 opacity-0 shadow-elegant transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 ${group.label === 'Produto' ? 'w-[48rem]' : wide ? 'w-[34rem]' : 'w-72'}`}>
+            <div id={`desktop-nav-options-${index}`} class={`desktop-dropdown-panel invisible absolute left-0 top-full z-10 max-h-[calc(100vh-5rem)] overflow-y-auto rounded-2xl border border-border bg-card p-3 opacity-0 shadow-elegant transition-all ${group.label === 'Produto' ? 'w-[48rem]' : wide ? 'w-[34rem]' : 'w-72'}`}>
               {group.label === 'Produto' ? (
                 <div class="grid grid-cols-3 gap-4">
                   {produtoSections.map((section) => (
@@ -58,14 +58,14 @@ const produtoSections = ['Vendas', 'Estoque', 'Financeiro', 'Fiscal', 'Gestão']
     </nav>
 
     <div class="hidden items-center gap-3 lg:flex">
-      <div class="group relative">
-        <button type="button" class="flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium text-foreground/85 hover:bg-muted hover:text-foreground" aria-controls="desktop-login-options">
+      <div class="desktop-dropdown relative">
+        <button type="button" class="flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium text-foreground/85 hover:bg-muted hover:text-foreground" aria-expanded="false" aria-controls="desktop-login-options">
           Entrar
           <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true" class="mt-0.5">
             <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
           </svg>
         </button>
-        <div id="desktop-login-options" class="invisible absolute right-0 top-full z-10 w-60 rounded-2xl border border-border bg-card p-2 opacity-0 shadow-elegant transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+        <div id="desktop-login-options" class="desktop-dropdown-panel invisible absolute right-0 top-full z-10 w-60 rounded-2xl border border-border bg-card p-2 opacity-0 shadow-elegant transition-all">
           <a href={LOGIN_ANTIGO_URL} class="block rounded-lg px-3 py-2 hover:bg-muted">
             <span class="block text-sm font-medium text-foreground">Versão antiga</span>
             <span class="block text-xs text-muted-foreground">app.lojiva.com.br</span>
@@ -134,11 +134,52 @@ const produtoSections = ['Vendas', 'Estoque', 'Financeiro', 'Fiscal', 'Gestão']
 </header>
 
 <style is:global>
+  .desktop-dropdown[data-open] > .desktop-dropdown-panel,
+  .desktop-dropdown[data-hover] > .desktop-dropdown-panel { visibility: visible; opacity: 1; }
   #mobile-menu summary::-webkit-details-marker { display: none; }
   #mobile-menu details[open] > summary .menu-chevron { transform: rotate(180deg); }
 </style>
 
 <script is:inline>
+  const desktopDropdowns = [...document.querySelectorAll('.desktop-dropdown')];
+  const mouseHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+  function closeDesktopDropdowns() {
+    desktopDropdowns.forEach((dropdown) => {
+      dropdown.removeAttribute('data-open');
+      dropdown.removeAttribute('data-hover');
+      dropdown.querySelector('button')?.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  desktopDropdowns.forEach((dropdown) => {
+    const button = dropdown.querySelector('button');
+    button?.addEventListener('click', () => {
+      const wasOpen = dropdown.hasAttribute('data-open');
+      closeDesktopDropdowns();
+      if (!wasOpen) {
+        dropdown.setAttribute('data-open', '');
+        button.setAttribute('aria-expanded', 'true');
+      }
+    });
+    dropdown.addEventListener('pointerenter', (event) => {
+      if (event.pointerType === 'mouse' && mouseHover.matches && !desktopDropdowns.some((item) => item.hasAttribute('data-open'))) {
+        dropdown.setAttribute('data-hover', '');
+      }
+    });
+    dropdown.addEventListener('pointerleave', () => dropdown.removeAttribute('data-hover'));
+  });
+  document.addEventListener('pointerdown', (event) => {
+    if (!desktopDropdowns.some((dropdown) => dropdown.contains(event.target))) closeDesktopDropdowns();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && desktopDropdowns.some((dropdown) => dropdown.hasAttribute('data-open'))) {
+      const button = desktopDropdowns.find((dropdown) => dropdown.hasAttribute('data-open'))?.querySelector('button');
+      closeDesktopDropdowns();
+      button?.focus();
+    }
+  });
+
   const mobileToggle = document.getElementById('mobile-menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
   const mobileOpenIcon = document.getElementById('mobile-menu-open-icon');
