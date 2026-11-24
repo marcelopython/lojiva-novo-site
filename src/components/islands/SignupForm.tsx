@@ -1,5 +1,5 @@
-import { useState, type ChangeEvent, type FormEvent } from 'react';
-import { SIGNUP_API_BASE, LOGIN_URL } from '@/data/plans';
+import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
+import { PLANS, SIGNUP_API_BASE, LOGIN_URL, formatBRL, type Plan } from '@/data/plans';
 
 type FormData = {
   name: string;
@@ -95,6 +95,14 @@ export default function SignupForm() {
   const [formError, setFormError] = useState('');
   const [isConfirming, setIsConfirming] = useState(false);
   const [pendingPayload, setPendingPayload] = useState<Record<string, unknown> | null>(null);
+  // Plano escolhido no card de preços (/cadastro?plan_id=...). Lido depois da hidratação porque a página é
+  // estática: o HTML do build não conhece a URL. plan_id desconhecido = nada é mostrado.
+  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
+
+  useEffect(() => {
+    const planId = new URLSearchParams(window.location.search).get('plan_id');
+    setSelectedPlan(PLANS.find((plan) => plan.planId === planId) ?? null);
+  }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -235,6 +243,15 @@ export default function SignupForm() {
 
   return (
     <div className="rounded-2xl border border-border bg-card p-8 shadow-elegant">
+      {selectedPlan && (
+        <div className="mb-6 rounded-lg border border-primary/25 bg-accent px-4 py-3" data-testid="selected-plan">
+          <p className="text-xs font-medium text-accent-foreground">Plano escolhido</p>
+          <p className="mt-0.5 text-sm font-semibold text-foreground">
+            Plano {selectedPlan.nome} · {formatBRL(selectedPlan.precoCentavos)}
+            <span className="font-normal text-muted-foreground">/mês</span>
+          </p>
+        </div>
+      )}
       <h2 className="font-display text-xl font-bold text-foreground">Criar conta</h2>
       <p className="mt-2 text-sm text-muted-foreground">Preencha os dados abaixo para começar a testar a Lojiva.</p>
 
